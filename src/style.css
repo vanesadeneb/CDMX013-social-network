@@ -1,0 +1,66 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/*start
+.container {
+    display: flex;
+}
+.btns{
+    display: flex;
+    margin: 1rem 0 1rem 0.01rem;
+}*/
+.header{
+    display: flex ;
+
+}
+
+#logo {
+    width: 8rem;
+    margin: 1rem;
+}
+
+#iconprofile     {
+    width: 1.5rem;
+    margin: 1rem 0 1.3rem 1rem;
+}
+
+#login-btn,
+#sign-up-btn {
+    border: none;
+    border-bottom: 0.2rem;
+    border-color: black;
+    background: none;
+    margin: 1rem 0.3rem 1rem 0;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+#slogan {
+    font-size: 1rem;
+    margin: 20% 5% 5% 5%;
+    color: #E350A8;
+}
+
+#women-tech {
+    display: flex;
+    width: 60%;
+    margin: 10% 25% 10% 0;
+}
+
+footer {
+    position: absolute;
+    width: 85%;
+    height: 2rem;
+    left: 0px;
+    top: 78%;
+    background: #B7E7E9;
+    text-align: center;
+}
