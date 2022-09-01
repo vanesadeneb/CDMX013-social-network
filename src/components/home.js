@@ -1,6 +1,7 @@
 import { onNavigate } from '../main.js';
 
 export const home = () => {
+  const divContainer = document.createElement('div');
   const header = document.createElement('header');
   const logoHome = document.createElement('img');
   const profileImage = document.createElement('img');
@@ -30,5 +31,6 @@ export const home = () => {
     commentSharedContainer.appendChild(comment.textContent = 'Hola!');
   });
   
-  return header;
+  divContainer.append(header,commentContainer)
+  return divContainer;
 };
