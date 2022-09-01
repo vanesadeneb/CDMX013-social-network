@@ -25,7 +25,6 @@ export const onNavigate = (pathname) => {
 
 const path = routes[window.location.pathname];
 
-
 window.onpopstate = () => {
   root.removeChild(root.firstChild);
   root.append(path());
