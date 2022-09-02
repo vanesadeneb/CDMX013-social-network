@@ -48,6 +48,10 @@ export const login = () => {
   loginGoogle.setAttribute('class', 'loginIcon');
   footer.textContent = '2022';
 
+  logo.addEventListener('click', () => {
+    onNavigate('/start');
+  });
+
   loginButton.addEventListener('click', () => {
     onNavigate('/home');
   });
