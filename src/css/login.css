@@ -1,8 +1,9 @@
-.text {
+.text, #text {
     font-size: 20px;
     text-align: center;
     margin-top: 111px;
     margin-bottom: 53px;
+   
 }
 
 .container {
@@ -39,10 +40,15 @@
     border-radius: 5px;
     background-color: #4A26AA;
     margin-bottom: 10px;
+    color: white;
 }
 
 #pAccount{
     font-size: 12px;
+}
+
+#divAccount{
+    display: flex;
 }
 
 #signUpButton{
@@ -54,10 +60,6 @@
     margin-left: 5px;
 }
 
-.loginIcon{
+.loginIcon, .signUpIcon{
     margin-top: 13px;
-}
-
-#divAccount{
-    display: flex;
 }
