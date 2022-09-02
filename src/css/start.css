@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
 /*start*/
@@ -50,8 +51,9 @@
 #slogan {
     font-size: 1.25rem;
     margin: 0;
-    width: 19.375rem;
+    width: 20rem;
     color: #E350A8;
+    text-align: center;
 }
 
 #women-tech {
@@ -69,4 +71,6 @@ footer {
     bottom: 0;
     background: #B7E7E9;
     text-align: center;
+    font-size: 14px;
+    padding: 7px 0;
 } 
