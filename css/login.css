@@ -1,0 +1,65 @@
+.text, #text {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 111px;
+    margin-bottom: 53px;
+   
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.logoTech {
+    display: flex;
+    width: 201px;
+    height: 50px;
+    margin-top: 44px;
+}
+
+.containerInputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+.inputs{
+    width: 310px;
+    height: 52px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.purpleButton{
+    width: 87px;
+    height: 34px;
+    border-radius: 5px;
+    background-color: #4A26AA;
+    margin-bottom: 10px;
+    color: white;
+}
+
+#pAccount{
+    font-size: 12px;
+}
+
+#divAccount{
+    display: flex;
+}
+
+#signUpButton{
+    font-size: 11px;
+    color: #E350A8;
+    background: none;
+    border: none;
+    margin-bottom: 72px;
+    margin-left: 5px;
+}
+
+.loginIcon, .signUpIcon{
+    margin-top: 13px;
+}

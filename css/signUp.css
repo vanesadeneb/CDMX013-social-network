@@ -1,0 +1,17 @@
+
+#pMessage{
+    font-size: 12px;
+    color: #686E8E;
+    width: 310px;
+    text-align: center;
+    margin: 23px 0 37px;
+}
+
+.nameslabel{
+    align-self: start;
+    font-size: 15px;
+}
+
+#text{
+    margin-top: 70px;  
+}
