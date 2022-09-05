@@ -19,7 +19,7 @@ export const signUp = () => {
   const signUpGoogle = document.createElement('img');
   const footer = document.createElement('footer');
 
-  logo.src = '../imgs/logo.png';
+  logo.src = 'imgs/logo.png';
   logo.classList.add('logoTech');
   divInputs.setAttribute('class', 'containerInputs');
   p.textContent = 'Sing up';
@@ -46,21 +46,21 @@ export const signUp = () => {
 
   divInputs.append(labelEmail, boxEmail, labelPassword, boxPassword, labelConfirm, boxConfirmPassword, signUpButton, pMessage);
 
-  sectionOr.src = '../imgs/sectionOr.png';
-  signUpTwitter.src = '../imgs/Twitter.png';
+  sectionOr.src = 'imgs/sectionOr.png';
+  signUpTwitter.src = 'imgs/Twitter.png';
   signUpTwitter.setAttribute('class', 'signUpIcon');
-  signUpGitHub.src = '../imgs/Github.png';
+  signUpGitHub.src = 'imgs/Github.png';
   signUpGitHub.setAttribute('class', 'signUpIcon');
-  signUpGoogle.src = '../imgs/Google.png';
+  signUpGoogle.src = 'imgs/Google.png';
   signUpGoogle.setAttribute('class', 'signUpIcon');
   footer.textContent = '2022';
 
   signUpButton.addEventListener('click', () => {
-    onNavigate('/login');
+    onNavigate('/CDMX013-social-network/login');
   });
 
   logo.addEventListener('click', () => {
-    onNavigate('/');
+    onNavigate('/CDMX013-social-network/');
   });
 
   divContainer.append(
