@@ -60,7 +60,7 @@ export const signUp = () => {
   });
 
   logo.addEventListener('click', () => {
-    onNavigate('/start');
+    onNavigate('/');
   });
 
   divContainer.append(
