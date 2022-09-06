@@ -1,4 +1,6 @@
+import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
+import { app } from '../lib/firebase.js';
 
 export const signUp = () => {
   const divContainer = document.createElement('div');
@@ -18,6 +20,8 @@ export const signUp = () => {
   const signUpGitHub = document.createElement('img');
   const signUpGoogle = document.createElement('img');
   const footer = document.createElement('footer');
+
+  const paraError = document.createElement('p');
 
   logo.src = '../imgs/logo.png';
   logo.classList.add('logoTech');
@@ -44,7 +48,7 @@ export const signUp = () => {
   signUpButton.textContent = 'Sign Up';
   signUpButton.setAttribute('class', 'purpleButton');
 
-  divInputs.append(labelEmail, boxEmail, labelPassword, boxPassword, labelConfirm, boxConfirmPassword, signUpButton, pMessage);
+  divInputs.append(labelEmail, boxEmail, labelPassword, boxPassword, labelConfirm, boxConfirmPassword, paraError, signUpButton, pMessage);
 
   sectionOr.src = '../imgs/sectionOr.png';
   signUpTwitter.src = '../imgs/Twitter.png';
@@ -55,9 +59,29 @@ export const signUp = () => {
   signUpGoogle.setAttribute('class', 'signUpIcon');
   footer.textContent = '2022';
 
-  signUpButton.addEventListener('click', () => {
-    onNavigate('/login');
-  });
+  const auth = getAuth(app);
+
+  const createAccount = async () => {
+    const loginEmail = boxEmail.value;
+    const loginPassword = boxPassword.value;
+    const confirmPasword = boxConfirmPassword.value;
+
+    try {
+      if (loginPassword !== confirmPasword) throw 'The password does not match';
+      const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword, confirmPasword);
+      // Signed in
+      const user = userCredential.user;
+      paraError.innerHTML = 'Congratulations, you have an account';
+    } catch (error) {
+      paraError.innerHTML = error;
+      // Missing @
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // ..
+    }
+  };
+
+  signUpButton.addEventListener('click', createAccount);
 
   logo.addEventListener('click', () => {
     onNavigate('/start');
