@@ -12,12 +12,12 @@ export const start = () => {
   const imgWomenInTech = document.createElement('img');
   const footer = document.createElement('footer');
 
-  logo.src = 'imgs/logo.png';
-  profileIcon.src = 'imgs/profile.png';
+  logo.src = 'src/imgs/logo.png';
+  profileIcon.src = 'src/imgs/profile.png';
   loginButton.textContent = 'Login';
   signUpButton.textContent = 'Sign Up';
   slogan.textContent = 'Empowering Women in Technology';
-  imgWomenInTech.src = 'imgs/imageTech.png';
+  imgWomenInTech.src = 'src/imgs/imageTech.png';
   footer.textContent = '2022';
 
   divContainer.setAttribute('class', 'container');
