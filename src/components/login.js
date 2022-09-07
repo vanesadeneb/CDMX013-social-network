@@ -65,11 +65,7 @@ export const login = () => {
     p,
     divInputs,
     divAccount,
-    footer,
-    sectionOr,
-    loginTwitter,
-    loginGitHub,
-    loginGoogle,
+    footer
   );
 
   divContainer.setAttribute('class', 'container');
