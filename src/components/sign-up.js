@@ -61,7 +61,6 @@ export const signUp = () => {
   footer.textContent = '2022';
   paraError.setAttribute('class', 'errorMessage');
   paraCongrats.setAttribute('id', 'congrats');
-  
 
   const auth = getAuth(app);
 
@@ -76,7 +75,7 @@ export const signUp = () => {
       // Signed in
       const user = userCredential.user;
       paraCongrats.innerHTML = 'Congratulations, you have an account';
-      function congrats(){
+      function congrats() {
         onNavigate('/login');
       }
       setTimeout(congrats, 1000);
@@ -116,20 +115,20 @@ export const signUp = () => {
     }
   };
 
-    signUpButton.addEventListener('click', createAccount);
+  signUpButton.addEventListener('click', createAccount);
 
-    logo.addEventListener('click', () => {
-      onNavigate('/start');
-    });
+  logo.addEventListener('click', () => {
+    onNavigate('/start');
+  });
 
-    divContainer.append(
-      logo,
-      p,
-      divInputs,
-      footer
-    );
+  divContainer.append(
+    logo,
+    p,
+    divInputs,
+    footer,
+  );
 
-    divContainer.setAttribute('class', 'container');
+  divContainer.setAttribute('class', 'container');
 
-    return divContainer;
-}
+  return divContainer;
+};
