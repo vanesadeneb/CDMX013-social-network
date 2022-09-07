@@ -15,3 +15,15 @@
 #text{
     margin-top: 70px;  
 }
+
+.errorMessage{
+    color: red;
+    align-self: center;
+    margin: 0 0 10px;
+}
+
+#congrats{
+    color: green;
+    align-self: center;
+    margin: 0 0 10px;
+}

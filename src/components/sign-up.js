@@ -22,6 +22,7 @@ export const signUp = () => {
   const footer = document.createElement('footer');
 
   const paraError = document.createElement('p');
+  const paraCongrats = document.createElement('p');
 
   logo.src = '../imgs/logo.png';
   logo.classList.add('logoTech');
@@ -48,7 +49,7 @@ export const signUp = () => {
   signUpButton.textContent = 'Sign Up';
   signUpButton.setAttribute('class', 'purpleButton');
 
-  divInputs.append(labelEmail, boxEmail, labelPassword, boxPassword, labelConfirm, boxConfirmPassword, paraError, signUpButton, pMessage);
+  divInputs.append(labelEmail, boxEmail, labelPassword, boxPassword, labelConfirm, boxConfirmPassword, paraError, paraCongrats, signUpButton, pMessage);
 
   sectionOr.src = '../imgs/sectionOr.png';
   signUpTwitter.src = '../imgs/Twitter.png';
@@ -58,6 +59,9 @@ export const signUp = () => {
   signUpGoogle.src = '../imgs/Google.png';
   signUpGoogle.setAttribute('class', 'signUpIcon');
   footer.textContent = '2022';
+  paraError.setAttribute('class', 'errorMessage');
+  paraCongrats.setAttribute('id', 'congrats');
+  
 
   const auth = getAuth(app);
 
@@ -71,34 +75,61 @@ export const signUp = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword, confirmPasword);
       // Signed in
       const user = userCredential.user;
-      paraError.innerHTML = 'Congratulations, you have an account';
+      paraCongrats.innerHTML = 'Congratulations, you have an account';
+      function congrats(){
+        onNavigate('/login');
+      }
+      setTimeout(congrats, 1000);
     } catch (error) {
       paraError.innerHTML = error;
-      // Missing @
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // ..
+
+      if (error.code === 'auth/invalid-email') {
+        paraError.style.display = 'block';
+        paraError.style.opacity = '1';
+        paraError.innerHTML = 'Your email is incorrect';
+      }
+      if (error.code === 'auth/email-already-in-use') {
+        paraError.style.display = 'block';
+        paraError.style.opacity = '1';
+        paraError.innerHTML = 'The e-mail already exist.';
+      }
+
+      if (error.code === 'auth/weak-password') {
+        paraError.style.display = 'block';
+        paraError.style.opacity = '1';
+        paraError.innerHTML = 'Your password should be at least 6 characters';
+      }
+
+      if (loginEmail === '' && loginPassword === '' && confirmPasword === '') {
+        paraError.innerHTML = 'Please, fill all the fields';
+      } else if (boxEmail.value === '') {
+        paraError.innerHTML = 'Please write an e-mail';
+      } else if (boxPassword.value === '') {
+        paraError.innerHTML = 'Please write a password';
+      } else if (boxConfirmPassword.value === '') {
+        paraError.innerHTML = 'Please confirm your password';
+
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // ..
+      }
     }
   };
 
-  signUpButton.addEventListener('click', createAccount);
+    signUpButton.addEventListener('click', createAccount);
 
-  logo.addEventListener('click', () => {
-    onNavigate('/start');
-  });
+    logo.addEventListener('click', () => {
+      onNavigate('/start');
+    });
 
-  divContainer.append(
-    logo,
-    p,
-    divInputs,
-    footer,
-    sectionOr,
-    signUpTwitter,
-    signUpGitHub,
-    signUpGoogle,
-  );
+    divContainer.append(
+      logo,
+      p,
+      divInputs,
+      footer
+    );
 
-  divContainer.setAttribute('class', 'container');
+    divContainer.setAttribute('class', 'container');
 
-  return divContainer;
-};
+    return divContainer;
+}
