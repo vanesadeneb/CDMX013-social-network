@@ -49,7 +49,7 @@ export const login = () => {
   footer.textContent = '2022';
 
   logo.addEventListener('click', () => {
-    onNavigate('/start');
+    onNavigate('/');
   });
 
   loginButton.addEventListener('click', () => {
