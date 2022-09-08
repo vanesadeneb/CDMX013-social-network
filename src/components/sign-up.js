@@ -65,6 +65,7 @@ export const signUp = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword, confirmPasword);
       // Signed in
       const user = userCredential.user;
+      paraError.innerHTML = ''; 
       paraCongrats.innerHTML = 'Congratulations, you have an account';
       function congrats() {
         onNavigate('/login');
