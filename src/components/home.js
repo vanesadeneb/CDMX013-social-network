@@ -5,7 +5,7 @@ export const home = () => {
   const header = document.createElement('header');
   const logoHome = document.createElement('img');
   const profileImage = document.createElement('img');
-  const logout = document.createElement('p');
+  const logout = document.createElement('button');
   const commentContainer = document.createElement('section');
   const writeComment = document.createElement('textarea');
   const shareButton = document.createElement('button');
