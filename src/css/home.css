@@ -25,6 +25,8 @@ header{
 }
 #logout{
     align-self: center;
+    border:none;
+    background-color: transparent;
 }
 textarea{
     align-self: center;
