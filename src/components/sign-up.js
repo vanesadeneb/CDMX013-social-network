@@ -7,9 +7,6 @@ export const signUp = () => {
   const logo = document.createElement('img');
   const divInputs = document.createElement('div');
   const p = document.createElement('p');
-  const labelEmail = document.createElement('label');
-  const labelPassword = document.createElement('label');
-  const labelConfirm = document.createElement('label');
   const boxEmail = document.createElement('input');
   const boxPassword = document.createElement('input');
   const boxConfirmPassword = document.createElement('input');
@@ -29,12 +26,6 @@ export const signUp = () => {
   divInputs.setAttribute('class', 'containerInputs');
   p.textContent = 'Sing up';
   p.setAttribute('id', 'text');
-  labelEmail.textContent = 'E-mail:';
-  labelEmail.setAttribute('class', 'nameslabel');
-  labelPassword.textContent = 'Password:';
-  labelPassword.setAttribute('class', 'nameslabel');
-  labelConfirm.textContent = 'Confirm your password:';
-  labelConfirm.setAttribute('class', 'nameslabel');
   boxEmail.setAttribute('type', 'email');
   boxEmail.placeholder = 'email@something.com';
   boxEmail.setAttribute('class', 'inputs');
@@ -49,7 +40,7 @@ export const signUp = () => {
   signUpButton.textContent = 'Sign Up';
   signUpButton.setAttribute('class', 'purpleButton');
 
-  divInputs.append(labelEmail, boxEmail, labelPassword, boxPassword, labelConfirm, boxConfirmPassword, paraError, paraCongrats, signUpButton, pMessage);
+  divInputs.append(boxEmail, boxPassword, boxConfirmPassword, paraError, paraCongrats, signUpButton, pMessage);
 
   sectionOr.src = '../imgs/sectionOr.png';
   signUpTwitter.src = '../imgs/Twitter.png';
