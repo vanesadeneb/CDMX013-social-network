@@ -12,6 +12,7 @@ export const home = () => {
   const commentSharedContainer = document.createElement('section');
   const comment = document.createElement('p');
 
+  header.setAttribute("id", "header");
   logoHome.src = '../imgs/logo2.png';
   logoHome.setAttribute('id', 'logo-home');
   profileImage.src = '../imgs/profile.png';
