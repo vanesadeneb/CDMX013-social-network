@@ -117,9 +117,9 @@ export const signUp = () => {
 
   signUpButton.addEventListener('click', createAccount);
 
-  logo.addEventListener('click', () => {
-    onNavigate('/start');
-  });
+    logo.addEventListener('click', () => {
+      onNavigate('/');
+    });
 
   divContainer.append(
     logo,

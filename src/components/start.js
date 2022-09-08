@@ -15,7 +15,7 @@ export const start = () => {
   logo.src = '../imgs/logo.png';
   profileIcon.src = '../imgs/profile.png';
   loginButton.textContent = 'Login';
-  signUpButton.textContent = 'Sign Up';
+  signUpButton.textContent = '| Sign Up';
   slogan.textContent = 'Empowering Women in Technology';
   imgWomenInTech.src = '../imgs/imageTech.png';
   footer.textContent = '2022';

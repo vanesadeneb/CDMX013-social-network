@@ -27,7 +27,7 @@
 
 #iconprofile     {
     width: 3.125rem;
-    margin: 1rem 0 1.3rem 1rem;
+    margin: 1rem 1rem 1.3rem 1rem;
 }
 
 #login-btn,
@@ -37,6 +37,7 @@
     border-color: black;
     background: none;
     margin: 1rem 0.3rem 1rem 0;
+    font-weight: bold;
 }
 
 .main{
