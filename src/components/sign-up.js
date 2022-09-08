@@ -7,9 +7,6 @@ export const signUp = () => {
   const logo = document.createElement('img');
   const divInputs = document.createElement('div');
   const p = document.createElement('p');
-  const labelEmail = document.createElement('label');
-  const labelPassword = document.createElement('label');
-  const labelConfirm = document.createElement('label');
   const boxEmail = document.createElement('input');
   const boxPassword = document.createElement('input');
   const boxConfirmPassword = document.createElement('input');
@@ -29,12 +26,6 @@ export const signUp = () => {
   divInputs.setAttribute('class', 'containerInputs');
   p.textContent = 'Sing up';
   p.setAttribute('id', 'text');
-  labelEmail.textContent = 'E-mail:';
-  labelEmail.setAttribute('class', 'nameslabel');
-  labelPassword.textContent = 'Password:';
-  labelPassword.setAttribute('class', 'nameslabel');
-  labelConfirm.textContent = 'Confirm your password:';
-  labelConfirm.setAttribute('class', 'nameslabel');
   boxEmail.setAttribute('type', 'email');
   boxEmail.placeholder = 'email@something.com';
   boxEmail.setAttribute('class', 'inputs');
@@ -49,7 +40,7 @@ export const signUp = () => {
   signUpButton.textContent = 'Sign Up';
   signUpButton.setAttribute('class', 'purpleButton');
 
-  divInputs.append(labelEmail, boxEmail, labelPassword, boxPassword, labelConfirm, boxConfirmPassword, paraError, paraCongrats, signUpButton, pMessage);
+  divInputs.append(boxEmail, boxPassword, boxConfirmPassword, paraError, paraCongrats, signUpButton, pMessage);
 
   sectionOr.src = '../imgs/sectionOr.png';
   signUpTwitter.src = '../imgs/Twitter.png';
@@ -61,7 +52,6 @@ export const signUp = () => {
   footer.textContent = '2022';
   paraError.setAttribute('class', 'errorMessage');
   paraCongrats.setAttribute('id', 'congrats');
-  
 
   const auth = getAuth(app);
 
@@ -76,7 +66,7 @@ export const signUp = () => {
       // Signed in
       const user = userCredential.user;
       paraCongrats.innerHTML = 'Congratulations, you have an account';
-      function congrats(){
+      function congrats() {
         onNavigate('/login');
       }
       setTimeout(congrats, 1000);
@@ -116,20 +106,20 @@ export const signUp = () => {
     }
   };
 
-    signUpButton.addEventListener('click', createAccount);
+  signUpButton.addEventListener('click', createAccount);
 
-    logo.addEventListener('click', () => {
-      onNavigate('/');
-    });
+  logo.addEventListener('click', () => {
+    onNavigate('/');
+  });
 
-    divContainer.append(
-      logo,
-      p,
-      divInputs,
-      footer
-    );
+  divContainer.append(
+    logo,
+    p,
+    divInputs,
+    footer,
+  );
 
-    divContainer.setAttribute('class', 'container');
+  divContainer.setAttribute('class', 'container');
 
-    return divContainer;
-}
+  return divContainer;
+};
