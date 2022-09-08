@@ -61,7 +61,7 @@ export const signUp = () => {
     const confirmPasword = boxConfirmPassword.value;
 
     try {
-      if (loginPassword !== confirmPasword) throw 'The password does not match';
+      if (loginPassword !== confirmPasword) throw Error('The password does not match');
       const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword, confirmPasword);
       // Signed in
       const user = userCredential.user;
