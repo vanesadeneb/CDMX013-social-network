@@ -43,6 +43,11 @@
     font-size: 20px;
 }
 
+.purpleButton:hover {
+    box-shadow: 0.063rem 0.313rem 0.625rem #21244D;
+    cursor: pointer;
+}
+
 #pAccount{
     font-size: 12px;
 }
