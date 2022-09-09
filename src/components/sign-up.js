@@ -68,7 +68,7 @@ export const signUp = () => {
       paraError.innerHTML = ''; 
       paraCongrats.innerHTML = 'Congratulations, you have an account';
       function congrats() {
-        onNavigate('/login');
+        onNavigate('/check');
       }
       setTimeout(congrats, 1000);
     } catch (error) {
