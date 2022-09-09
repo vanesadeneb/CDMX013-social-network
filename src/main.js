@@ -3,6 +3,8 @@ import { start } from './components/start.js';
 import { login } from './components/login.js';
 import { signUp } from './components/sign-up.js';
 import { home } from './components/home.js';
+import { check } from './components/successCreateAccount.js';
+
 
 const root = document.getElementById('root');
 
@@ -11,6 +13,7 @@ const routes = {
   '/login': login,
   '/signUp': signUp,
   '/home': home,
+  '/check': check,
 };
 
 export const onNavigate = (pathname) => {
