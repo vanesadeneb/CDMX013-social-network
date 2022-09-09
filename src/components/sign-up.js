@@ -66,7 +66,6 @@ export const signUp = () => {
       // Signed in
       const user = userCredential.user;
       paraError.innerHTML = ''; 
-      paraCongrats.innerHTML = 'Congratulations, you have an account';
       function congrats() {
         onNavigate('/check');
       }
