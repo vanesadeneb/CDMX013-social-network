@@ -8,4 +8,4 @@ const auth = getAuth(app);
 
   export const logIn = async (email, password) => {
     return await signInWithEmailAndPassword(email, password);
-  }
+  };
