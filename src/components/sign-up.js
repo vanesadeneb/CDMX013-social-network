@@ -1,5 +1,5 @@
 import { onNavigate } from '../main.js';
-import { createAccount } from '../firebase/register.js';
+import { auth, createAccount } from '../firebase/register.js';
 
 export const signUp = () => {
   const divContainer = document.createElement('div');
@@ -58,8 +58,8 @@ export const signUp = () => {
     const confirmPasword = boxConfirmPassword.value;
 
     try {
-      if (loginPassword !== confirmPasword) throw Error('The password does not match');
-      createAccount(signUpEmail, signUpPassword, confirmPasword);
+      if (signUpPassword !== confirmPasword) throw Error('The password does not match');
+      createAccount(auth,signUpEmail, signUpPassword, confirmPasword);
       paraError.innerHTML = ''; 
       function congrats() {
         onNavigate('/check');
@@ -85,7 +85,7 @@ export const signUp = () => {
         paraError.innerHTML = 'Your password should be at least 6 characters';
       }
 
-      if (loginEmail === '' && loginPassword === '' && confirmPasword === '') {
+      if (signUpEmail === '' && signUpPassword === '' && confirmPasword === '') {
         paraError.innerHTML = 'Please, fill all the fields';
       } else if (boxEmail.value === '') {
         paraError.innerHTML = 'Please write an e-mail';

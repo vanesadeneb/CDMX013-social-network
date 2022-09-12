@@ -1,5 +1,5 @@
 import { onNavigate } from '../main.js';
-import { logIn } from '../firebase/register.js';
+import { auth, logIn } from '../firebase/register.js';
 
 export const login = () => {
   const divContainer = document.createElement('div');
@@ -51,12 +51,40 @@ export const login = () => {
 
   const firebaseLogIn = async () => {
     const loginEmail = boxEmail.value;
+    //loginEmail.replace('/" "/g', ""); 
+    console.log(loginEmail);
     const loginPassword = boxPassword.value;
 
     try{
-      logIn(loginEmail,loginPassword);
+      logIn(auth, loginEmail,loginPassword);
       onNavigate('/home');
-    }catch{}
+    }catch(error){
+      if (error.code === 'auth/user-not-found') {
+        para.style.display = 'block';
+        para.style.opacity = '1';
+        para.innerHTML = 'You do not have an account yet';
+      }
+      if (error.code === 'auth/internal-error') {
+        para.style.display = 'block';
+        para.style.opacity = '1';
+        para.innerHTML = 'Please, write your password';
+      }
+      if (error.code === 'auth/invalid-email') {
+        para.style.display = 'block';
+        para.style.opacity = '1';
+        para.innerHTML = 'Your email is incorrect';
+      }
+      if (error.code === 'auth/wrong-password') {
+        para.style.display = 'block';
+        para.style.opacity = '1';
+        para.innerHTML = 'Your password is incorrect';
+      }
+      if (error.code === 'auth/user-disabled') {
+        para.style.display = 'block';
+        para.style.opacity = '1';
+        para.innerHTML = 'Your account is disabled';
+      }
+    }
   };
   
   loginButton.addEventListener('click', firebaseLogIn);
