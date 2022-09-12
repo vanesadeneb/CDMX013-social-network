@@ -42,12 +42,12 @@ export const signUp = () => {
 
   divInputs.append(boxEmail, boxPassword, boxConfirmPassword, paraError, paraCongrats, signUpButton, pMessage);
 
-  sectionOr.src = '../imgs/sectionOr.png';
-  signUpTwitter.src = '../imgs/Twitter.png';
+  sectionOr.src = 'src/imgs/sectionOr.png';
+  signUpTwitter.src = 'src/imgs/Twitter.png';
   signUpTwitter.setAttribute('class', 'signUpIcon');
-  signUpGitHub.src = '../imgs/Github.png';
+  signUpGitHub.src = 'src/imgs/Github.png';
   signUpGitHub.setAttribute('class', 'signUpIcon');
-  signUpGoogle.src = '../imgs/Google.png';
+  signUpGoogle.src = 'src/imgs/Google.png';
   signUpGoogle.setAttribute('class', 'signUpIcon');
   footer.textContent = '2022';
   paraError.setAttribute('class', 'errorMessage');
@@ -65,9 +65,9 @@ export const signUp = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword, confirmPasword);
       // Signed in
       const user = userCredential.user;
-      paraError.innerHTML = ''; 
+      paraError.innerHTML = '';
       function congrats() {
-        onNavigate('/check');
+        onNavigate('/CDMX013-social-network/check');
       }
       setTimeout(congrats, 1000);
     } catch (error) {
@@ -109,7 +109,7 @@ export const signUp = () => {
   signUpButton.addEventListener('click', createAccount);
 
   logo.addEventListener('click', () => {
-    onNavigate('/');
+    onNavigate('/CDMX013-social-network/');
   });
 
   divContainer.append(

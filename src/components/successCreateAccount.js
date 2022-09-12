@@ -19,7 +19,7 @@ export const check = () => {
   div.append(button);
 
   button.addEventListener('click', () => {
-    onNavigate('/login');
+    onNavigate('/CDMX013-social-network/login');
   });
   return div;
 };
