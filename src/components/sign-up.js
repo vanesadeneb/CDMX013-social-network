@@ -21,7 +21,7 @@ export const signUp = () => {
   const paraError = document.createElement('p');
   const paraCongrats = document.createElement('p');
 
-  logo.src = '../imgs/logo.png';
+  logo.src = 'src/imgs/logo.png';
   logo.classList.add('logoTech');
   divInputs.setAttribute('class', 'containerInputs');
   p.textContent = 'Sing up';
@@ -43,11 +43,11 @@ export const signUp = () => {
   divInputs.append(boxEmail, boxPassword, boxConfirmPassword, paraError, paraCongrats, signUpButton, pMessage);
 
   sectionOr.src = 'src/imgs/sectionOr.png';
-  signUpTwitter.src = 'src/imgs/Twitter.png';
+  signUpTwitter.src = 'src/imgs/twitter.png';
   signUpTwitter.setAttribute('class', 'signUpIcon');
-  signUpGitHub.src = 'src/imgs/Github.png';
+  signUpGitHub.src = 'src/imgs/github.png';
   signUpGitHub.setAttribute('class', 'signUpIcon');
-  signUpGoogle.src = 'src/imgs/Google.png';
+  signUpGoogle.src = 'src/imgs/google.png';
   signUpGoogle.setAttribute('class', 'signUpIcon');
   footer.textContent = '2022';
   paraError.setAttribute('class', 'errorMessage');

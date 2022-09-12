@@ -5,15 +5,14 @@ import { signUp } from './components/sign-up.js';
 import { home } from './components/home.js';
 import { check } from './components/successCreateAccount.js';
 
-
 const root = document.getElementById('root');
 
 const routes = {
-  '/': start,
-  '/login': login,
-  '/signUp': signUp,
-  '/home': home,
-  '/check': check,
+  '/CDMX013-social-network/': start,
+  '/CDMX013-social-network/login': login,
+  '/CDMX013-social-network/signUp': signUp,
+  '/CDMX013-social-network/home': home,
+  '/CDMX013-social-network/check': check,
 };
 
 export const onNavigate = (pathname) => {
