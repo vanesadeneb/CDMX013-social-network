@@ -6,13 +6,6 @@
     font-weight: 900;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-}
-
 .logoTech {
     display: flex;
     width: 225px;
