@@ -1,4 +1,5 @@
 import { onNavigate } from '../main.js';
+import { logIn } from '../firebase/register.js';
 
 export const login = () => {
   const divContainer = document.createElement('div');
@@ -48,12 +49,20 @@ export const login = () => {
   loginGoogle.setAttribute('class', 'loginIcon');
   footer.textContent = '2022';
 
+  const firebaseLogIn = async () => {
+    const loginEmail = boxEmail.value;
+    const loginPassword = boxPassword.value;
+
+    try{
+      logIn(loginEmail,loginPassword);
+      onNavigate('/home');
+    }catch{}
+  };
+  
+  loginButton.addEventListener('click', firebaseLogIn);
+
   logo.addEventListener('click', () => {
     onNavigate('/');
-  });
-
-  loginButton.addEventListener('click', () => {
-    onNavigate('/home');
   });
 
   signUpButton.addEventListener('click', () => {

@@ -1,6 +1,5 @@
-import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
-import { app } from '../lib/firebase.js';
+import { createAccount } from '../firebase/register.js';
 
 export const signUp = () => {
   const divContainer = document.createElement('div');
@@ -53,18 +52,14 @@ export const signUp = () => {
   paraError.setAttribute('class', 'errorMessage');
   paraCongrats.setAttribute('id', 'congrats');
 
-  const auth = getAuth(app);
-
-  const createAccount = async () => {
-    const loginEmail = boxEmail.value;
-    const loginPassword = boxPassword.value;
+  const register = async () => {
+    const signUpEmail = boxEmail.value;
+    const signUpPassword = boxPassword.value;
     const confirmPasword = boxConfirmPassword.value;
 
     try {
       if (loginPassword !== confirmPasword) throw Error('The password does not match');
-      const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword, confirmPasword);
-      // Signed in
-      const user = userCredential.user;
+      createAccount(signUpEmail, signUpPassword, confirmPasword);
       paraError.innerHTML = ''; 
       function congrats() {
         onNavigate('/check');
@@ -98,15 +93,11 @@ export const signUp = () => {
         paraError.innerHTML = 'Please write a password';
       } else if (boxConfirmPassword.value === '') {
         paraError.innerHTML = 'Please confirm your password';
-
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // ..
       }
     }
   };
 
-  signUpButton.addEventListener('click', createAccount);
+  signUpButton.addEventListener('click', register);
 
   logo.addEventListener('click', () => {
     onNavigate('/');
