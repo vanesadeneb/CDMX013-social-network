@@ -87,6 +87,11 @@ export const signUp = () => {
         paraError.style.opacity = '1';
         paraError.innerHTML = 'Your password should be at least 6 characters';
       }
+      if (error.code === 'auth/network-request-failed') {
+        paraError.style.display = 'block';
+        paraError.style.opacity = '1';
+        paraError.innerHTML = 'Connection failed';
+      }
 
       if (signUpEmail === '' && signUpPassword === '' && confirmPasword === '') {
         paraError.innerHTML = 'Please, fill all the fields';
