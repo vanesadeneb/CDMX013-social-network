@@ -59,7 +59,8 @@ export const login = () => {
     const loginPassword = boxPassword.value;
 
     try {
-      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      const userCredencial = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      const user = userCredencial.user;
       onNavigate('/home');
     } catch (error) {
       if (error.code === 'auth/user-not-found') {
