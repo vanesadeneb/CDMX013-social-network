@@ -62,7 +62,8 @@ export const signUp = () => {
 
     try {
       if (signUpPassword !== confirmPasword) throw Error('The password does not match');
-      await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword, confirmPasword);
+      const userCredencial = await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword, confirmPasword);
+      const user = userCredencial.user;
       paraError.innerHTML = '';
       function congrats() {
         onNavigate('/check');
