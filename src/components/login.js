@@ -1,6 +1,7 @@
 import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
 import { app } from '../lib/firebase.js';
+import { githubLoginButton, githubLogin } from './github.js'
 
 export const auth = getAuth(app);
 
@@ -36,7 +37,7 @@ export const login = () => {
   loginButton.textContent = 'Log in';
   loginButton.setAttribute('class', 'purpleButton');
 
-  divInputs.append(boxEmail, boxPassword, paraError, loginButton);
+  divInputs.append(boxEmail, boxPassword, paraError, loginButton, githubLoginButton());
 
   pAccount.textContent = ' Do not you have an account yet? Please,  ';
   pAccount.setAttribute('id', 'pAccount');
