@@ -1,8 +1,6 @@
-import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
-import { app } from '../lib/firebase.js';
-
-export const auth = getAuth(app);
+import { auth} from '../lib/firebase.js';
 
 export const login = () => {
   const divContainer = document.createElement('div');
