@@ -1,7 +1,6 @@
 import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { app } from '../lib/firebase.js';
 import { onNavigate } from '../main.js';
-import { githubLogin } from './github.js'
 
 export const auth = getAuth(app);
 
@@ -46,11 +45,11 @@ export const signUp = () => {
   divInputs.append(boxEmail, boxPassword, boxConfirmPassword, paraError, paraCongrats, signUpButton, pMessage);
 
   sectionOr.src = '../imgs/sectionOr.png';
-  signUpTwitter.src = '../imgs/twitter.png';
+  signUpTwitter.src = '../imgs/Twitter.png';
   signUpTwitter.setAttribute('class', 'signUpIcon');
-  signUpGitHub.src = '../imgs/github.png';
+  signUpGitHub.src = '../imgs/Github.png';
   signUpGitHub.setAttribute('class', 'signUpIcon');
-  signUpGoogle.src = '../imgs/google.png';
+  signUpGoogle.src = '../imgs/Google.png';
   signUpGoogle.setAttribute('class', 'signUpIcon');
   footer.textContent = '2022';
   paraError.setAttribute('class', 'errorMessage');
@@ -113,13 +112,10 @@ export const signUp = () => {
     onNavigate('/');
   });
 
-  signUpGitHub.addEventListener('click', githubLogin);
-
   divContainer.append(
     logo,
     p,
     divInputs,
-    signUpGitHub,
     footer,
   );
 
