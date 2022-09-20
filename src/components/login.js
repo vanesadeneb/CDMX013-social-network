@@ -115,6 +115,7 @@ export const login = () => {
     const provider = new GoogleAuthProvider()
   signInWithPopup(auth, provider)
   .then((result) => {
+    onNavigate("/home")
     console.log(result);
     console.log("google sign in");
   })
