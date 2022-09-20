@@ -1,11 +1,9 @@
-import {
-  getAuth,
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
 
-import { GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from "../main.js";
 import { app} from "../lib/firebase.js";
+import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { githubLogin } from './github.js'
+import { googleAuth } from './google.js'
 
 export const auth = getAuth(app);
 
@@ -106,23 +104,13 @@ export const login = () => {
     onNavigate("/");
   });
 
+  loginGoogle.addEventListener("click", googleAuth);
+
   signUpButton.addEventListener("click", () => {
     onNavigate("/signUp");
   });
 
-  loginGoogle.addEventListener("click", () => {
-    const auth = getAuth();
-    const provider = new GoogleAuthProvider()
-  signInWithPopup(auth, provider)
-  .then((result) => {
-    onNavigate("/home")
-    console.log(result);
-    console.log("google sign in");
-  })
-  .catch(err => {
-    console.log(err);
-  })
-});
+  loginGitHub.addEventListener('click', githubLogin);
 
   divContainer.append(
     logo,
@@ -131,7 +119,8 @@ export const login = () => {
     divAccount,
     sectionOr,
     loginGoogle,
-    footer
+    loginGitHub,
+    footer,
   );
 
   divContainer.setAttribute("class", "container");
