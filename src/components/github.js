@@ -4,9 +4,9 @@ import { app } from '../lib/firebase.js';
 const githubProvider = new GithubAuthProvider();
 const auth = getAuth(app);
 
-signInWithRedirect(auth, githubProvider);
 
 export const githubLogin = () => { 
+signInWithRedirect(auth, githubProvider);
 getRedirectResult(auth)
 .then((result) => {
     const credential = GithubAuthProvider.credentialFromResult(result);
