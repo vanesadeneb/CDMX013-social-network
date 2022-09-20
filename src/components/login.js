@@ -1,6 +1,7 @@
 import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
 import { app } from '../lib/firebase.js';
+import { githubLogin } from './github.js'
 
 export const auth = getAuth(app);
 
@@ -101,11 +102,14 @@ export const login = () => {
     onNavigate('/signUp');
   });
 
+  loginGitHub.addEventListener('click', githubLogin);
+
   divContainer.append(
     logo,
     p,
     divInputs,
     divAccount,
+    loginGitHub,
     footer,
   );
 
