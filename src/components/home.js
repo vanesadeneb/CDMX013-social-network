@@ -15,7 +15,7 @@ export const home = () => {
   const writeComment = document.createElement('input');
   const shareButton = document.createElement('button');
   const commentSharedContainer = document.createElement('section');
-  const comment = document.createElement('article');
+  const comment = document.createElement('section');
 
   divContainer.setAttribute('id', 'body-home');
   header.setAttribute('id', 'header');
@@ -29,7 +29,10 @@ export const home = () => {
   postForm.setAttribute('class', 'section-home');
   nameUser.setAttribute('id', 'name-user');
   writeComment.setAttribute('id', 'post-container');
-  writeComment.setAttribute('placeholder', 'Share something with the community...');
+  writeComment.setAttribute(
+    'placeholder',
+    'Share something with the community...',
+  );
   shareButton.textContent = 'Share';
   shareButton.setAttribute('id', 'share');
   // comment.textContent= "Aquí están tus post";
@@ -47,30 +50,51 @@ export const home = () => {
   // const email = user.email;
   // nameUser.textContent = email;
 
-  window.addEventListener('DOMContentLoaded', async () => {
-    onGetPost((querySnapshot) => {
-      let html = '';
+  const user = auth.currentUser;
+  console.log(user.email);
+  console.log(user);
+  nameUser.textContent = `Welcome ${user.email}!`;
 
-      querySnapshot.forEach((doc) => {
-        const postData = doc.data();
-        html += `
-          <p id="post-content">${postData.post}</p>
+  //  window.addEventListener('load', async () => {
+  onGetPost((querySnapshot) => {
+    let html = '';
+
+    querySnapshot.forEach((doc) => {
+      const postData = doc.data();
+      html += `
+          <article id="post-content">
+          <p>${postData.user}</p>
+          <p>${postData.posts}</p>
+          </article>
           `;
-      });
-      comment.innerHTML = html;
     });
+    comment.innerHTML = html;
   });
+  //  });
 
   shareButton.addEventListener('click', (e) => {
     e.preventDefault();
     // const nameUserPost = postForm ['name-user'];
     const postUser = postForm['post-container'];
-    if (postUser.value.length < 300) {
-      publish(postUser.value);
+    const userID = user.email;
+    publish(postUser.value, userID);
+    /*     if (user && postUser.value.length < 300) {
+      publish(postUser.value, userID); */
+    /*          onGetPost((querySnapshot) => {
+        let html = "";
+
+        querySnapshot.forEach((doc) => {
+          const postData = doc.data();
+          html += `
+            <p>${postData.user}</p>
+            <p id="post-content">${postData.posts}</p>
+            `;
+        });
+        comment.innerHTML = html;
+      });
     } else {
       alert('please, write less than 300 characters');
-    }
-
+    } */
     postForm.reset();
   });
 
