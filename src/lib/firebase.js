@@ -25,8 +25,8 @@ export const db = getFirestore(app);
 
 // export const publish = (post) => console.log(post);
 
-export const publish = (post) => addDoc(collection(db, 'post'), { post });
+export const publish = (posts, user) => addDoc(collection(db, 'posts'), { posts, user });
 
-export const getPost = () => getDocs(collection(db, 'post'));
+export const getPost = () => getDocs(collection(db, 'posts'));
 
-export const onGetPost = (callback) => onSnapshot(collection(db, 'post'), callback);
+export const onGetPost = (callback) => onSnapshot(collection(db, 'posts'), callback);
