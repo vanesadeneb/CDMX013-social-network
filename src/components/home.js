@@ -54,7 +54,6 @@ export const home = () => {
       querySnapshot.forEach((doc) => {
         const postData = doc.data();
         html += `
-          <h3>${nameUser}</h3>
           <p id="post-content">${postData.post}</p>
           `;
       });
@@ -67,7 +66,7 @@ export const home = () => {
     // const nameUserPost = postForm ['name-user'];
     const postUser = postForm['post-container'];
     if (postUser.value.length < 300) {
-      publish(nameUser, postUser.value);
+      publish(postUser.value);
     } else {
       alert('please, write less than 300 characters');
     }
