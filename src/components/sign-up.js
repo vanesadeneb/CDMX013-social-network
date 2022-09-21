@@ -97,18 +97,18 @@ export const signUp = () => {
       if (error.code === 'auth/weak-password') {
         paraError.style.display = 'block';
         paraError.style.opacity = '1';
-        paraError.innerHTML = 'Your password should be at least 6 characters';
+        paraError.innerHTML = 'Your password length should be at least 6 characters';
       }
       if (error.code === 'auth/network-request-failed') {
         paraError.style.display = 'block';
         paraError.style.opacity = '1';
-        paraError.innerHTML = 'Connection failed';
+        paraError.innerHTML = 'Connection fail';
       }
 
       if (signUpEmail === '' && signUpPassword === '' && confirmPasword === '') {
-        paraError.innerHTML = 'Please, fill all the fields';
+        paraError.innerHTML = 'Please, fill out all fields';
       } else if (boxEmail.value === '') {
-        paraError.innerHTML = 'Please write an e-mail';
+        paraError.innerHTML = 'Please write an e-mail address';
       } else if (boxPassword.value === '') {
         paraError.innerHTML = 'Please write a password';
       } else if (boxConfirmPassword.value === '') {

@@ -41,7 +41,7 @@ export const login = () => {
 
   divInputs.append(boxEmail, boxPassword, paraError, loginButton);
 
-  pAccount.textContent = " Do not you have an account yet? Please,  ";
+  pAccount.textContent = " Don't have an account yet? Please,  ";
   pAccount.setAttribute("id", "pAccount");
   signUpButton.textContent = "Sign up here ";
   divAccount.append(pAccount, signUpButton);

@@ -2,6 +2,7 @@ import { onNavigate } from '../main.js';
 import {
   auth, publish, getPost, onGetPost,
 } from '../lib/firebase.js';
+import { signout } from './signOut.js'
 
 export const home = () => {
   const divContainer = document.createElement('div');
@@ -13,6 +14,7 @@ export const home = () => {
   const postForm = document.createElement('form');
   const nameUser = document.createElement('p');
   const writeComment = document.createElement('input');
+  const errorCharacters = document.createElement('p');
   const shareButton = document.createElement('button');
   const commentSharedContainer = document.createElement('section');
   const comment = document.createElement('section');
@@ -33,16 +35,18 @@ export const home = () => {
     'placeholder',
     'Share something with the community...',
   );
+/*   writeComment.setAttribute("type", 'text');
+  writeComment.setAttribute("max_length", 25); */
   shareButton.textContent = 'Share';
   shareButton.setAttribute('id', 'share');
   // comment.textContent= "Aquí están tus post";
 
   header.append(logoHome, profileImage, logout);
-  postForm.append(nameUser, writeComment, shareButton);
+  postForm.append(nameUser, writeComment, errorCharacters, shareButton);
   sectionContainer.append(postForm, comment);
 
   logout.addEventListener('click', () => {
-    onNavigate('/');
+    signout()
   });
   // writeComment text area and shareButton is the btn
 
@@ -51,8 +55,6 @@ export const home = () => {
   // nameUser.textContent = email;
 
   const user = auth.currentUser;
-  console.log(user.email);
-  console.log(user);
   nameUser.textContent = `Welcome ${user.email}!`;
 
   //  window.addEventListener('load', async () => {
@@ -77,9 +79,8 @@ export const home = () => {
     // const nameUserPost = postForm ['name-user'];
     const postUser = postForm['post-container'];
     const userID = user.email;
-    publish(postUser.value, userID);
-    /*     if (user && postUser.value.length < 300) {
-      publish(postUser.value, userID); */
+if (user && postUser.value.length < 300) {
+      publish(postUser.value, userID);
     /*          onGetPost((querySnapshot) => {
         let html = "";
 
@@ -91,10 +92,10 @@ export const home = () => {
             `;
         });
         comment.innerHTML = html;
-      });
+      });*/
     } else {
-      alert('please, write less than 300 characters');
-    } */
+      errorCharacters.textContent = 'please, write less than 300 characters'
+    } 
     postForm.reset();
   });
 
