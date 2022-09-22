@@ -62,10 +62,14 @@ export const home = () => {
           </div>
           <p class="post-user">${postData.posts}</p>
           <div class = "like-comment">
-            <i class="fa-regular fa-heart"></i>
+          <span class = "icon-container">
+            <i class="fa-regular fa-heart" id="heart"></i>
             <p>Like</p>
+          </span>
+          <span class= "icon-container">
             <img class ="comment-img" src="../imgs/comment.png" alt="Profile Image">
             <p>Comment</p>
+          </span>
           </div>
           </article>
           `;
