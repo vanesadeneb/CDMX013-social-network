@@ -1,30 +1,25 @@
-import { onNavigate } from '../main.js';
 import {
-  auth, publish, getPost, onGetPost,
+  auth, publish, onGetPost,
 } from '../lib/firebase.js';
-import { signout } from './signOut.js'
+import { signout } from './signOut.js';
 
 export const home = () => {
   const divContainer = document.createElement('div');
   const header = document.createElement('header');
   const logoHome = document.createElement('img');
-  const profileImage = document.createElement('img');
   const logout = document.createElement('button');
   const sectionContainer = document.createElement('section');
   const postForm = document.createElement('form');
-  const nameUser = document.createElement('p');
-  const writeComment = document.createElement('input');
+  const nameUser = document.createElement('h1');
+  const writeComment = document.createElement('textarea');
   const errorCharacters = document.createElement('p');
   const shareButton = document.createElement('button');
-  const commentSharedContainer = document.createElement('section');
   const comment = document.createElement('section');
 
   divContainer.setAttribute('id', 'body-home');
   header.setAttribute('id', 'header');
   logoHome.src = '../imgs/logo2.png';
   logoHome.setAttribute('id', 'logo-home');
-  profileImage.src = '../imgs/profile.png';
-  profileImage.setAttribute('id', 'profile');
   logout.textContent = 'Log out';
   logout.setAttribute('id', 'logout');
   sectionContainer.setAttribute('class', 'section-home');
@@ -33,75 +28,58 @@ export const home = () => {
   writeComment.setAttribute('id', 'post-container');
   writeComment.setAttribute(
     'placeholder',
-    'Share something with the community...',
+    'Share something less than 300 characters with the community ...',
   );
-/*   writeComment.setAttribute("type", 'text');
-  writeComment.setAttribute("max_length", 25); */
+  writeComment.setAttribute('maxlength', 299);
   shareButton.textContent = 'Share';
   shareButton.setAttribute('id', 'share');
-  // comment.textContent= "Aquí están tus post";
 
-  header.append(logoHome, profileImage, logout);
+  header.append(logoHome, logout);
   postForm.append(nameUser, writeComment, errorCharacters, shareButton);
   sectionContainer.append(postForm, comment);
 
   logout.addEventListener('click', () => {
-    signout()
+    signout();
   });
-  // writeComment text area and shareButton is the btn
-
-  // const user = auth.currentUser;
-  // const email = user.email;
-  // nameUser.textContent = email;
 
   const user = auth.currentUser;
-  nameUser.textContent = `Welcome ${user.email}!`;
+  nameUser.textContent = `Welcome ${user.email} !`;
 
-  //  window.addEventListener('load', async () => {
   onGetPost((querySnapshot) => {
     let html = '';
 
     querySnapshot.forEach((doc) => {
       const postData = doc.data();
       html += `
-          <article id="post-content">
-          <p>${postData.user}</p>
-          <p>${postData.posts}</p>
+          <article class="post-content">
+          <div class= "container-header-post">
+            <img id= "profile-home" src="../imgs/profile.png" alt="Profile Image">
+            <h2 id ="header-post">${postData.user}</h2>
+            <span id="delete-edit">
+              <i class="fa-sharp fa-solid fa-trash"></i>
+              <i class="fa-sharp fa-solid fa-pencil"></i>
+            </span>
+          </div>
+          <p class="post-user">${postData.posts}</p>
+          <div class = "like-comment">
+            <i class="fa-regular fa-heart"></i>
+            <p>Like</p>
+            <img class ="comment-img" src="../imgs/comment.png" alt="Profile Image">
+            <p>Comment</p>
+          </div>
           </article>
           `;
     });
     comment.innerHTML = html;
   });
-  //  });
 
   shareButton.addEventListener('click', (e) => {
     e.preventDefault();
-    // const nameUserPost = postForm ['name-user'];
     const postUser = postForm['post-container'];
     const userID = user.email;
-if (user && postUser.value.length < 300) {
-      publish(postUser.value, userID);
-    /*          onGetPost((querySnapshot) => {
-        let html = "";
-
-        querySnapshot.forEach((doc) => {
-          const postData = doc.data();
-          html += `
-            <p>${postData.user}</p>
-            <p id="post-content">${postData.posts}</p>
-            `;
-        });
-        comment.innerHTML = html;
-      });*/
-    } else {
-      errorCharacters.textContent = 'please, write less than 300 characters'
-    } 
+    publish(postUser.value, userID);
     postForm.reset();
   });
-
-  // shareButton.addEventListener('click', () => {
-  //   commentSharedContainer.appendChild(comment.textContent = 'Hola!');
-  // });
 
   divContainer.append(header, sectionContainer);
   return divContainer;

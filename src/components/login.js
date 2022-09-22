@@ -1,61 +1,61 @@
-
-import { onNavigate } from "../main.js";
-import { app} from "../lib/firebase.js";
 import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
-import { githubLogin } from './github.js'
-import { googleAuth } from './google.js'
+import { onNavigate } from '../main.js';
+import { app } from '../lib/firebase.js';
+import { githubLogin } from './github.js';
+import { googleAuth } from './google.js';
 
 export const auth = getAuth(app);
 
 export const login = () => {
-  const divContainer = document.createElement("div");
-  const logo = document.createElement("img");
-  const divInputs = document.createElement("div");
-  const p = document.createElement("p");
-  const boxEmail = document.createElement("input");
-  const boxPassword = document.createElement("input");
-  const loginButton = document.createElement("button");
-  const pAccount = document.createElement("p");
-  const signUpButton = document.createElement("button");
-  const divAccount = document.createElement("div");
-  const sectionOr = document.createElement("img");
-  const loginTwitter = document.createElement("img");
-  const loginGitHub = document.createElement("img");
-  const loginGoogle = document.createElement("img");
-  const footer = document.createElement("footer");
-  const paraError = document.createElement("p");
+  const divContainer = document.createElement('div');
+  const logo = document.createElement('img');
+  const divInputs = document.createElement('div');
+  const p = document.createElement('p');
+  const boxEmail = document.createElement('input');
+  const boxPassword = document.createElement('input');
+  const loginButton = document.createElement('button');
+  const pAccount = document.createElement('p');
+  const signUpButton = document.createElement('button');
+  const divAccount = document.createElement('div');
+  const sectionOr = document.createElement('img');
+  const loginTwitter = document.createElement('img');
+  const loginGitHub = document.createElement('img');
+  const loginGoogle = document.createElement('img');
+  const footer = document.createElement('footer');
+  const paraError = document.createElement('p');
 
-  logo.src = "../imgs/logo.png";
-  logo.classList.add("logoTech");
-  divInputs.setAttribute("class", "containerInputs");
-  p.textContent = "Log in";
-  p.setAttribute("class", "text");
-  boxEmail.setAttribute("type", "email");
-  boxEmail.placeholder = "email@something.com";
-  boxEmail.setAttribute("class", "inputs");
-  boxPassword.setAttribute("type", "password");
-  boxPassword.placeholder = "password";
-  boxPassword.setAttribute("class", "inputs");
-  loginButton.textContent = "Log in";
-  loginButton.setAttribute("class", "purpleButton");
+  logo.src = '../imgs/logo.png';
+  logo.classList.add('logoTech');
+  divInputs.setAttribute('class', 'containerInputs');
+  p.textContent = 'Log in';
+  p.setAttribute('class', 'text');
+
+  boxEmail.setAttribute('type', 'email');
+  boxEmail.placeholder = 'email@something.com';
+  boxEmail.setAttribute('class', 'inputs');
+  boxPassword.setAttribute('type', 'password');
+  boxPassword.placeholder = 'password';
+  boxPassword.setAttribute('class', 'inputs');
+  loginButton.textContent = 'Log in';
+  loginButton.setAttribute('class', 'purpleButton');
 
   divInputs.append(boxEmail, boxPassword, paraError, loginButton);
 
   pAccount.textContent = " Don't have an account yet? Please,  ";
-  pAccount.setAttribute("id", "pAccount");
-  signUpButton.textContent = "Sign up here ";
+  pAccount.setAttribute('id', 'pAccount');
+  signUpButton.textContent = 'Sign up here ';
   divAccount.append(pAccount, signUpButton);
-  divAccount.setAttribute("id", "divAccount");
-  signUpButton.setAttribute("id", "signUpButton");
-  sectionOr.src = "../imgs/sectionOr.png";
-  loginTwitter.src = "../imgs/loginTwitter.png";
-  loginTwitter.setAttribute("class", "loginIcon");
-  loginGitHub.src = "../imgs/loginGithub.png";
-  loginGitHub.setAttribute("class", "loginIcon");
-  loginGoogle.src = "../imgs/loginGoogle.png";
-  loginGoogle.setAttribute("class", "loginIcon");
-  footer.textContent = "2022";
-  paraError.setAttribute("class", "errorMessage");
+  divAccount.setAttribute('id', 'divAccount');
+  signUpButton.setAttribute('id', 'signUpButton');
+  sectionOr.src = '../imgs/sectionOr.png';
+  loginTwitter.src = '../imgs/loginTwitter.png';
+  loginTwitter.setAttribute('class', 'loginIcon');
+  loginGitHub.src = '../imgs/loginGithub.png';
+  loginGitHub.setAttribute('class', 'loginIcon');
+  loginGoogle.src = '../imgs/loginGoogle.png';
+  loginGoogle.setAttribute('class', 'loginIcon');
+  footer.textContent = '2022';
+  paraError.setAttribute('class', 'errorMessage');
 
   const firebaseLogIn = async () => {
     const loginEmail = boxEmail.value;
@@ -65,49 +65,49 @@ export const login = () => {
       const userCredencial = await signInWithEmailAndPassword(
         auth,
         loginEmail,
-        loginPassword
+        loginPassword,
       );
       const user = userCredencial.user;
-      onNavigate("/home");
+      onNavigate('/home');
     } catch (error) {
-      if (error.code === "auth/user-not-found") {
-        paraError.style.display = "block";
-        paraError.style.opacity = "1";
-        paraError.innerHTML = "You do not have an account yet";
+      if (error.code === 'auth/user-not-found') {
+        paraError.style.display = 'block';
+        paraError.style.opacity = '1';
+        paraError.innerHTML = 'You do not have an account yet';
       }
-      if (error.code === "auth/internal-error") {
-        paraError.style.display = "block";
-        paraError.style.opacity = "1";
-        paraError.innerHTML = "Please, write your password";
+      if (error.code === 'auth/internal-error') {
+        paraError.style.display = 'block';
+        paraError.style.opacity = '1';
+        paraError.innerHTML = 'Please, write your password';
       }
-      if (error.code === "auth/invalid-email") {
-        paraError.style.display = "block";
-        paraError.style.opacity = "1";
-        paraError.innerHTML = "Your email is incorrect";
+      if (error.code === 'auth/invalid-email') {
+        paraError.style.display = 'block';
+        paraError.style.opacity = '1';
+        paraError.innerHTML = 'Your email is incorrect';
       }
-      if (error.code === "auth/wrong-password") {
-        paraError.style.display = "block";
-        paraError.style.opacity = "1";
-        paraError.innerHTML = "Your password is incorrect";
+      if (error.code === 'auth/wrong-password') {
+        paraError.style.display = 'block';
+        paraError.style.opacity = '1';
+        paraError.innerHTML = 'Your password is incorrect';
       }
-      if (error.code === "auth/user-disabled") {
-        paraError.style.display = "block";
-        paraError.style.opacity = "1";
-        paraError.innerHTML = "Your account is disabled";
+      if (error.code === 'auth/user-disabled') {
+        paraError.style.display = 'block';
+        paraError.style.opacity = '1';
+        paraError.innerHTML = 'Your account is disabled';
       }
     }
   };
 
-  loginButton.addEventListener("click", firebaseLogIn);
+  loginButton.addEventListener('click', firebaseLogIn);
 
-  logo.addEventListener("click", () => {
-    onNavigate("/");
+  logo.addEventListener('click', () => {
+    onNavigate('/');
   });
 
-  loginGoogle.addEventListener("click", googleAuth);
+  loginGoogle.addEventListener('click', googleAuth);
 
-  signUpButton.addEventListener("click", () => {
-    onNavigate("/signUp");
+  signUpButton.addEventListener('click', () => {
+    onNavigate('/signUp');
   });
 
   loginGitHub.addEventListener('click', githubLogin);
@@ -123,7 +123,7 @@ export const login = () => {
     footer,
   );
 
-  divContainer.setAttribute("class", "container");
+  divContainer.setAttribute('class', 'container');
 
   return divContainer;
 };
