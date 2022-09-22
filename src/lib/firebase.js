@@ -19,6 +19,7 @@ export const app = initializeApp(firebaseConfig);
 
 // Auth
 export const auth = getAuth(app);
+//export const users = auth.currentUser;
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
@@ -27,6 +28,16 @@ export const db = getFirestore(app);
 
 export const publish = (posts, user) => addDoc(collection(db, 'posts'), { posts, user });
 
-export const getPost = () => getDocs(collection(db, 'posts'));
+// export const getPost = () => getDocs(collection(db, 'posts'));
+
+//Sort collection
+// const sortCollection= (publish)=> publish.sort((a, b) => {
+//      if(a.name< b.name){ 
+//        return 1
+//      } if (a.name> b.name){
+//        return -1
+//      } 
+//        return 0
+//    });
 
 export const onGetPost = (callback) => onSnapshot(collection(db, 'posts'), callback);
