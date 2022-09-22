@@ -1,8 +1,4 @@
-/* #body-home{
-    height: auto;
-    background-color: #968fa84b;
-    background-repeat: repeat-y;
-} */
+/*header*/
 #header{
     display: flex;
     justify-content: flex-start;
@@ -15,15 +11,18 @@
     align-self: center;
     margin-right: 50%;
 }
-#profile {
-    width: 3.125rem;
-    margin: 1rem 0.5rem 0.5rem 1rem;
-}
+
 #logout{
-    align-self: center;
-    border:none;
-    background-color: transparent;
+    margin: auto;
+    border: none;
+    background-color: #9543A7;
+    width: 108.86px;
+    height: 36px;
+    border-radius: 5px;
+    color: #fff;
 }
+
+/*home section*/
 .section-home{
     display: flex;
     flex-direction: column;
@@ -31,11 +30,25 @@
     margin: 15px auto;
 }
 
+/*Input post*/
+#name-user{
+    text-align: center;
+    font-size: 15px;
+}
+
 #post-container{
+    
+    padding: 10px;
+    margin-top: 10px;
+    resize: none;
     align-self: center;
-    width: 100%;
-    height: 70px;
-    background-color:#ffff;
+    width: 338px;
+    height: 86.61px;
+    background-color: #ffff;
+    border: 1px solid #9543A7;
+    box-shadow: 0 1px 1px 0 rgb(149,67,167 ), 0 1px 3px 0 rgb(149,67,167 );
+    text-align: justify;
+    font-size: 10px;
 }
 
 #share{
@@ -49,10 +62,51 @@
     margin-top: 10px;
     font-size: 1rem;
 }
-#post-content{
+
+/*For each post*/
+.post-content{
     padding: .1rem;
     margin: .8rem 0;
     border: 1px solid #4A26AA;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px 0 rgb(161, 161, 161), 0 1px 1px 0 rgb(114, 114, 114);
     background-color: #d9d9d97a;
     font-size: small;
+}
+
+.container-header-post{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+h2{
+    margin: 15px 130px 25px 0;
+    font-size: 13px;
+}
+
+span.delete-edit {
+    margin: 7px 5px 0 0;
+}
+
+p.post-user{
+    padding: 10px;
+    border-bottom: 1px solid rgb(15, 15, 15);
+}
+
+div.like-comment{
+    display: flex;
+    margin-top: 10px;
+}
+
+i.fa-regular {
+    width: 25px;
+    height: 27.71px;
+    margin-left: 50px;
+}
+
+img.comment-img {
+    width: 24px;
+    height: 21px;
+    margin: -1.1px, 5px, 100px;
 }
