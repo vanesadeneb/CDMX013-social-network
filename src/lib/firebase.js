@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js';
 import {
-  getFirestore, collection, addDoc, getDocs, onSnapshot,
+  getFirestore, collection, addDoc, getDocs, onSnapshot, serverTimestamp, query, orderBy
 } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js';
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 
@@ -25,8 +25,14 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 // export const publish = (post) => console.log(post);
+// a new variable is created to store the post data collection
+const postsRef = collection(db, 'posts');
 
-export const publish = (posts, user) => addDoc(collection(db, 'posts'), { posts, user });
+const qOrderByTime = query(postsRef, orderBy('timeOfPublication', 'desc')); //Asc is default
+
+export const timeOfPublication = serverTimestamp();
+
+export const publish = (posts, user) => addDoc(postsRef, { posts, user, timeOfPublication });
 
 // export const getPost = () => getDocs(collection(db, 'posts'));
 
@@ -40,4 +46,6 @@ export const publish = (posts, user) => addDoc(collection(db, 'posts'), { posts,
 //        return 0
 //    });
 
-export const onGetPost = (callback) => onSnapshot(collection(db, 'posts'), callback);
+
+//export const onGetPost = (callback) => onSnapshot(collection(db, 'posts'), callback);
+export const onGetPost = (callback) => onSnapshot(qOrderByTime, callback);
