@@ -2,7 +2,8 @@
 #header{
     display: flex;
     justify-content: flex-start;
-    border-bottom: 1px solid black;    
+    border-bottom: 1px solid black;  
+    padding: 10px;  
 }
 #logo-home {
     width: 17%;
@@ -48,7 +49,7 @@
     border: 1px solid #9543A7;
     box-shadow: 0 1px 1px 0 rgb(149,67,167 ), 0 1px 3px 0 rgb(149,67,167 );
     text-align: justify;
-    font-size: 10px;
+    font-size: 15px;
 }
 
 #share{
@@ -94,7 +95,7 @@ h2{
 p.post-user{
     padding: 10px;
     border-bottom: 1px solid gray;
-    overflow-wrap: break-word;
+    overflow-wrap: break-word ;
 }
 
 div.like-comment{

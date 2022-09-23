@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js';
 import {
-  getFirestore, collection, addDoc, onSnapshot, serverTimestamp, query, orderBy, deleteDoc, doc,
+  getFirestore, collection, addDoc, getDocs, onSnapshot, serverTimestamp, query, orderBy, doc, deleteDoc,
 } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js';
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 
@@ -25,14 +25,16 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 // export const publish = (post) => console.log(post);
+// a new variable is created to store the post data collection
+const postsRef = collection(db, 'posts');
 
-export const publish = (posts, user) => addDoc(collection(db, 'posts'), { posts, user, timestamp: serverTimestamp() });
+export const publish = (posts, user) => addDoc(postsRef, { posts, user, timeOfPublication: serverTimestamp() });
 
 // export const getPost = () => getDocs(collection(db, 'posts'));
 
 // Adding query to order posts by time
 
-const q = query(collection(db, 'posts'), orderBy('timestamp', 'desc'));
+const q = query(collection(db, 'posts'), orderBy('timeOfPublication', 'desc'));
 
 export const onGetPost = (callback) => onSnapshot(q, callback);
 
@@ -41,13 +43,4 @@ export const deletePost = async () => { try { const d = await deleteDoc(doc(db, 
 //   await deleteDoc(doc(db, 'posts')).catch((err) => {
 //   console.error(err);
 // });
-// };
-
-// export const deletePost = async (item) => {
-//   const d = query(collection(db, 'post'), where('timestamp', '==', item.timestamp));
-//   const docSnap = await getDocs(d);
-//   docSnap.forEach((doc) => {
-//     console.log(doc.ref);
-//     deleteDoc(doc.ref);
-//   });
 // };
