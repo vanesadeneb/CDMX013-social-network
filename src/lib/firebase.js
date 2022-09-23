@@ -24,23 +24,15 @@ export const auth = getAuth(app);
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
-// export const publish = (post) => console.log(post);
 // a new variable is created to store the post data collection
 const postsRef = collection(db, 'posts');
 
 export const publish = (posts, user) => addDoc(postsRef, { posts, user, timeOfPublication: serverTimestamp() });
 
-// export const getPost = () => getDocs(collection(db, 'posts'));
-
 // Adding query to order posts by time
-
 const q = query(collection(db, 'posts'), orderBy('timeOfPublication', 'desc'));
 
 export const onGetPost = (callback) => onSnapshot(q, callback);
 
-export const deletePost = async () => { try { const d = await deleteDoc(doc(db, 'posts', 'id')); } catch (error) { console.log(error.code); } };
-// export const deletePost = async () => {
-//   await deleteDoc(doc(db, 'posts')).catch((err) => {
-//   console.error(err);
-// });
-// };
+// Con doc se elimina un solo dato. Recibe dos parámetros: la conexion a la base de datos y el ID.
+export const deletePost = (id) => deleteDoc(doc(db, 'posts', id));
