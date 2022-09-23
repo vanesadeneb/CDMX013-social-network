@@ -1,5 +1,5 @@
 import {
-  auth, publish, onGetPost,
+  auth, publish, onGetPost
 } from '../lib/firebase.js';
 import { signout } from './signOut.js';
 
