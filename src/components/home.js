@@ -1,5 +1,5 @@
 import {
-  auth, publish, onGetPost
+  auth, publish, onGetPost, deletePost,
 } from '../lib/firebase.js';
 import { signout } from './signOut.js';
 
@@ -56,7 +56,7 @@ export const home = () => {
             <img id= "profile-home" src="../imgs/profile.png" alt="Profile Image">
             <h2 id ="header-post">${postData.user}</h2>
             <span id="delete-edit">
-              <i class="fa-sharp fa-solid fa-trash"></i>
+              <i class="fa-sharp fa-solid fa-trash "  id="delete${doc.id}"></i>
               <i class="fa-sharp fa-solid fa-pencil"></i>
             </span>
           </div>
@@ -73,8 +73,9 @@ export const home = () => {
           </div>
           </article>
           `;
+      comment.innerHTML = html;
+      comment.querySelector(`#delete${doc.id}`).addEventListener('click', deletePost());
     });
-    comment.innerHTML = html;
   });
 
   shareButton.addEventListener('click', (e) => {

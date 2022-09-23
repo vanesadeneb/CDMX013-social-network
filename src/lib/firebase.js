@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js';
 import {
-  getFirestore, collection, addDoc, getDocs, onSnapshot, serverTimestamp, query, orderBy
+  getFirestore, collection, addDoc, getDocs, onSnapshot, serverTimestamp, query, orderBy, doc, deleteDoc,
 } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js';
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 
@@ -19,7 +19,7 @@ export const app = initializeApp(firebaseConfig);
 
 // Auth
 export const auth = getAuth(app);
-//export const users = auth.currentUser;
+// export const users = auth.currentUser;
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
@@ -28,24 +28,19 @@ export const db = getFirestore(app);
 // a new variable is created to store the post data collection
 const postsRef = collection(db, 'posts');
 
-const qOrderByTime = query(postsRef, orderBy('timeOfPublication', 'desc')); //Asc is default
-
-export const timeOfPublication = serverTimestamp();
-
-export const publish = (posts, user) => addDoc(postsRef, { posts, user, timeOfPublication });
+export const publish = (posts, user) => addDoc(postsRef, { posts, user, timeOfPublication: serverTimestamp() });
 
 // export const getPost = () => getDocs(collection(db, 'posts'));
 
-//Sort collection
-// const sortCollection= (publish)=> publish.sort((a, b) => {
-//      if(a.name< b.name){ 
-//        return 1
-//      } if (a.name> b.name){
-//        return -1
-//      } 
-//        return 0
-//    });
+// Adding query to order posts by time
 
+const q = query(collection(db, 'posts'), orderBy('timeOfPublication', 'desc'));
 
-//export const onGetPost = (callback) => onSnapshot(collection(db, 'posts'), callback);
-export const onGetPost = (callback) => onSnapshot(qOrderByTime, callback);
+export const onGetPost = (callback) => onSnapshot(q, callback);
+
+export const deletePost = async () => { try { const d = await deleteDoc(doc(db, 'posts', 'id')); } catch (error) { console.log(error.code); } };
+// export const deletePost = async () => {
+//   await deleteDoc(doc(db, 'posts')).catch((err) => {
+//   console.error(err);
+// });
+// };
