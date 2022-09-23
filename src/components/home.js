@@ -47,7 +47,6 @@ export const home = () => {
 
   onGetPost((querySnapshot) => {
     let html = '';
-
     querySnapshot.forEach((doc) => {
       const postData = doc.data();
       html += `
@@ -56,14 +55,14 @@ export const home = () => {
             <img id= "profile-home" src="../imgs/profile.png" alt="Profile Image">
             <h2 id ="header-post">${postData.user}</h2>
             <span id="delete-edit">
-              <i class="fa-sharp fa-solid fa-trash "  id="delete${doc.id}"></i>
+              <i class="fa-sharp fa-solid fa-trash" data-id="${doc.id}"></i>
               <i class="fa-sharp fa-solid fa-pencil"></i>
             </span>
           </div>
           <p class="post-user">${postData.posts}</p>
           <div class = "like-comment">
           <span class = "icon-container">
-            <i class="fa-regular fa-heart" id="heart"></i>
+            <i class="fa-regular fa-heart"></i>
             <p>Like</p>
           </span>
           <span class= "icon-container">
@@ -73,8 +72,16 @@ export const home = () => {
           </div>
           </article>
           `;
-      comment.innerHTML = html;
-      comment.querySelector(`#delete${doc.id}`).addEventListener('click', deletePost());
+    });
+    comment.innerHTML = html;
+
+    // Delete post
+    const deteleTrash = comment.querySelectorAll('.fa-trash');
+
+    deteleTrash.forEach((trash) => {
+      trash.addEventListener('click', ({ target: { dataset } }) => {
+        deletePost(dataset.id);
+      });
     });
   });
 
