@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js';
 import {
-  getFirestore, collection, addDoc, getDocs, onSnapshot,
+  getFirestore, collection, addDoc, onSnapshot, serverTimestamp, query, orderBy, deleteDoc, doc,
 } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js';
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 
@@ -19,25 +19,35 @@ export const app = initializeApp(firebaseConfig);
 
 // Auth
 export const auth = getAuth(app);
-//export const users = auth.currentUser;
+// export const users = auth.currentUser;
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
 // export const publish = (post) => console.log(post);
 
-export const publish = (posts, user) => addDoc(collection(db, 'posts'), { posts, user });
+export const publish = (posts, user) => addDoc(collection(db, 'posts'), { posts, user, timestamp: serverTimestamp() });
 
 // export const getPost = () => getDocs(collection(db, 'posts'));
 
-//Sort collection
-// const sortCollection= (publish)=> publish.sort((a, b) => {
-//      if(a.name< b.name){ 
-//        return 1
-//      } if (a.name> b.name){
-//        return -1
-//      } 
-//        return 0
-//    });
+// Adding query to order posts by time
 
-export const onGetPost = (callback) => onSnapshot(collection(db, 'posts'), callback);
+const q = query(collection(db, 'posts'), orderBy('timestamp', 'desc'));
+
+export const onGetPost = (callback) => onSnapshot(q, callback);
+
+export const deletePost = async () => { try { const d = await deleteDoc(doc(db, 'posts', 'id')); } catch (error) { console.log(error.code); } };
+// export const deletePost = async () => {
+//   await deleteDoc(doc(db, 'posts')).catch((err) => {
+//   console.error(err);
+// });
+// };
+
+// export const deletePost = async (item) => {
+//   const d = query(collection(db, 'post'), where('timestamp', '==', item.timestamp));
+//   const docSnap = await getDocs(d);
+//   docSnap.forEach((doc) => {
+//     console.log(doc.ref);
+//     deleteDoc(doc.ref);
+//   });
+// };

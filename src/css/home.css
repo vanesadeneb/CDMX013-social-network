@@ -94,6 +94,7 @@ h2{
 p.post-user{
     padding: 10px;
     border-bottom: 1px solid gray;
+    overflow-wrap: break-word;
 }
 
 div.like-comment{
