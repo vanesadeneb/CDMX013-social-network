@@ -33,6 +33,7 @@ export const home = () => {
   writeComment.setAttribute('maxlength', 299);
   shareButton.textContent = 'Share';
   shareButton.setAttribute('id', 'share');
+  shareButton.disabled = true;
 
   header.append(logoHome, logout);
   postForm.append(nameUser, writeComment, errorCharacters, shareButton);
@@ -83,6 +84,16 @@ export const home = () => {
         deletePost(dataset.id);
       });
     });
+  });
+
+  writeComment.addEventListener('input', (event) => {
+    const { value } = event.target;
+    console.log(value);
+    if (value !== '') {
+      shareButton.disabled = false;
+    } else {
+      shareButton.disabled = true;
+    }
   });
 
   shareButton.addEventListener('click', (e) => {
