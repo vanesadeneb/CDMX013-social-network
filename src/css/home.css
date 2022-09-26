@@ -64,6 +64,13 @@
     font-size: 1rem;
 }
 
+#share:disabled,
+#share[disabled]{
+  background-color: rgba(74,38,170,0.6);
+  color: white;
+  cursor:not-allowed;
+}
+
 /*For each post*/
 .post-content{
     padding: .1rem;
