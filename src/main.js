@@ -30,13 +30,10 @@ export const onNavigate = (pathname) => {
 onAuthStateChanged(auth, (user) => {
   if (user) {
     onNavigate('/home')
-    console.log(user);
-    const displayName = user.displayName;
-    const email = user.email;
-    const photoURL = user.photoURL;
-    const uid = user.uid;
-    console.log(displayName);
-    console.log(photoURL);
+    // const displayName = user.displayName;
+    // const email = user.email;
+    // const photoURL = user.photoURL;
+    // const uid = user.uid;
   } else {
     onNavigate('/');
   }
