@@ -43,23 +43,25 @@ export const home = () => {
     signout();
   });
 
-  const user = auth.currentUser;
-  nameUser.textContent = `Welcome ${user.email} !`;
-
   onGetPost((querySnapshot) => {
+    const user = auth.currentUser;
+    nameUser.textContent = `Welcome ${user.email} !`;
     let html = '';
+    let htmlDelete = '';
     querySnapshot.forEach((doc) => {
       const postData = doc.data();
+      if (user.email === postData.user) {
+        htmlDelete = `
+          <i class="fa-sharp fa-solid fa-trash" data-id="${doc.id}"></i>
+          <i class="fa-sharp fa-solid fa-pencil"></i>`;
+      }
       html += `
           <article class="post-content">
           <div class= "container-header-post">
             <img id= "profile-home" src="../imgs/profile.png" alt="Profile Image">
             <h2 id ="header-post">${postData.user}</h2>
-            <span id="delete-edit">
-              <i class="fa-sharp fa-solid fa-trash" data-id="${doc.id}"></i>
-              <i class="fa-sharp fa-solid fa-pencil"></i>
-            </span>
           </div>
+          <span id="delete-edit"> ${htmlDelete} </span>
           <p class="post-user">${postData.posts}</p>
           <div class = "like-comment">
           <span class = "icon-container">
@@ -88,7 +90,7 @@ export const home = () => {
 
   writeComment.addEventListener('input', (event) => {
     const { value } = event.target;
-    console.log(value);
+    // console.log(value);
     if (value !== '') {
       shareButton.disabled = false;
     } else {
