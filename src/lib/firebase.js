@@ -19,7 +19,6 @@ export const app = initializeApp(firebaseConfig);
 
 // Auth
 export const auth = getAuth(app);
-// export const users = auth.currentUser;
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
@@ -27,7 +26,9 @@ export const db = getFirestore(app);
 // a new variable is created to store the post data collection
 const postsRef = collection(db, 'posts');
 
-export const publish = (posts, user) => addDoc(postsRef, { posts, user, timeOfPublication: serverTimestamp() });
+export const publish = (posts, user) => addDoc(postsRef, {
+  posts, user, timeOfPublication: serverTimestamp(),
+});
 
 // Adding query to order posts by time
 const q = query(collection(db, 'posts'), orderBy('timeOfPublication', 'desc'));
