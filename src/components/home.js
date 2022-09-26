@@ -87,7 +87,9 @@ export const home = () => {
 
     deteleTrash.forEach((trash) => {
       trash.addEventListener('click', ({ target: { dataset } }) => {
-        deletePost(dataset.id);
+        if (window.confirm("Do you really want to delete?")) {
+          deletePost(dataset.id);
+        }
       });
     });
   });
