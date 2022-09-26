@@ -43,6 +43,8 @@ export const home = () => {
     signout();
   });
 
+  const user = auth.currentUser;
+
   onGetPost((querySnapshot) => {
     const user = auth.currentUser;
     nameUser.textContent = `Welcome ${user.email} !`;
@@ -54,14 +56,16 @@ export const home = () => {
         htmlDelete = `
           <i class="fa-sharp fa-solid fa-trash" data-id="${doc.id}"></i>
           <i class="fa-sharp fa-solid fa-pencil"></i>`;
+      } else { 
+        htmlDelete = '';
       }
       html += `
           <article class="post-content">
           <div class= "container-header-post">
             <img id= "profile-home" src="../imgs/profile.png" alt="Profile Image">
             <h2 id ="header-post">${postData.user}</h2>
+            <span id="delete-edit"> ${htmlDelete} </span>
           </div>
-          <span id="delete-edit"> ${htmlDelete} </span>
           <p class="post-user">${postData.posts}</p>
           <div class = "like-comment">
           <span class = "icon-container">
