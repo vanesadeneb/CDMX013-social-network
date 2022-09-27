@@ -29,7 +29,7 @@
     "jest/valid-expect": "error",
     "import/no-cycle": "off",
     "max-len": ["error", { "code": 200 }],
-    "commonjs": false,
-    "amd": false
+    "commonjs": true, 
+    "amd": true
   }
 }

@@ -4,7 +4,8 @@ import { login } from './components/login.js';
 import { signUp } from './components/sign-up.js';
 import { home } from './components/home.js';
 import { check } from './components/successCreateAccount.js';
-
+import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { auth } from './lib/firebase.js';
 
 const root = document.getElementById('root');
 
@@ -25,6 +26,18 @@ export const onNavigate = (pathname) => {
   root.removeChild(root.firstChild);
   root.appendChild(routes[pathname]());
 };
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    onNavigate('/home')
+    // const displayName = user.displayName;
+    // const email = user.email;
+    // const photoURL = user.photoURL;
+    // const uid = user.uid;
+  } else {
+    onNavigate('/');
+  }
+});
 
 const path = routes[window.location.pathname];
 

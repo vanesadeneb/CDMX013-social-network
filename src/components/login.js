@@ -1,6 +1,8 @@
 import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
 import { app } from '../lib/firebase.js';
+import { githubLogin } from './github.js';
+import { googleAuth } from './google.js';
 
 export const auth = getAuth(app);
 
@@ -27,6 +29,7 @@ export const login = () => {
   divInputs.setAttribute('class', 'containerInputs');
   p.textContent = 'Log in';
   p.setAttribute('class', 'text');
+  
   boxEmail.setAttribute('type', 'email');
   boxEmail.placeholder = 'email@something.com';
   boxEmail.setAttribute('class', 'inputs');
@@ -59,7 +62,11 @@ export const login = () => {
     const loginPassword = boxPassword.value;
 
     try {
-      const userCredencial = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      const userCredencial = await signInWithEmailAndPassword(
+        auth, 
+        loginEmail, 
+        loginPassword,
+        );
       const user = userCredencial.user;
       onNavigate('/home');
     } catch (error) {
@@ -97,15 +104,22 @@ export const login = () => {
     onNavigate('/');
   });
 
+  loginGoogle.addEventListener('click', googleAuth);
+  
   signUpButton.addEventListener('click', () => {
     onNavigate('/signUp');
   });
+
+  loginGitHub.addEventListener('click', githubLogin);
 
   divContainer.append(
     logo,
     p,
     divInputs,
     divAccount,
+    sectionOr,
+    loginGoogle,
+    loginGitHub,
     footer,
   );
 
