@@ -29,7 +29,7 @@ export const login = () => {
   divInputs.setAttribute('class', 'containerInputs');
   p.textContent = 'Log in';
   p.setAttribute('class', 'text');
-
+  
   boxEmail.setAttribute('type', 'email');
   boxEmail.placeholder = 'email@something.com';
   boxEmail.setAttribute('class', 'inputs');
@@ -41,7 +41,7 @@ export const login = () => {
 
   divInputs.append(boxEmail, boxPassword, paraError, loginButton);
 
-  pAccount.textContent = " Don't have an account yet? Please,  ";
+  pAccount.textContent = ' Do not you have an account yet? Please,  ';
   pAccount.setAttribute('id', 'pAccount');
   signUpButton.textContent = 'Sign up here ';
   divAccount.append(pAccount, signUpButton);
@@ -63,10 +63,10 @@ export const login = () => {
 
     try {
       const userCredencial = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
+        auth, 
+        loginEmail, 
         loginPassword,
-      );
+        );
       const user = userCredencial.user;
       onNavigate('/home');
     } catch (error) {
@@ -105,7 +105,7 @@ export const login = () => {
   });
 
   loginGoogle.addEventListener('click', googleAuth);
-
+  
   signUpButton.addEventListener('click', () => {
     onNavigate('/signUp');
   });

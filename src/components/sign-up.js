@@ -22,7 +22,7 @@ export const signUp = () => {
   const signUpGitHub = document.createElement('img');
   const signUpGoogle = document.createElement('img');
   const footer = document.createElement('footer');
-
+  
   const paraError = document.createElement('p');
   const paraCongrats = document.createElement('p');
 
@@ -54,11 +54,11 @@ export const signUp = () => {
   divInputs.append(boxName, boxLastName, boxEmail, boxPassword, boxConfirmPassword, paraError, paraCongrats, signUpButton, pMessage);
 
   sectionOr.src = '../imgs/sectionOr.png';
-  signUpTwitter.src = '../imgs/twitter.png';
+  signUpTwitter.src = '../imgs/Twitter.png';
   signUpTwitter.setAttribute('class', 'signUpIcon');
-  signUpGitHub.src = '../imgs/github.png';
+  signUpGitHub.src = '../imgs/Github.png';
   signUpGitHub.setAttribute('class', 'signUpIcon');
-  signUpGoogle.src = '../imgs/google.png';
+  signUpGoogle.src = '../imgs/Google.png';
   signUpGoogle.setAttribute('class', 'signUpIcon');
   footer.textContent = '2022';
   paraError.setAttribute('class', 'errorMessage');
@@ -97,18 +97,18 @@ export const signUp = () => {
       if (error.code === 'auth/weak-password') {
         paraError.style.display = 'block';
         paraError.style.opacity = '1';
-        paraError.innerHTML = 'Your password length should be at least 6 characters';
+        paraError.innerHTML = 'Your password should be at least 6 characters';
       }
       if (error.code === 'auth/network-request-failed') {
         paraError.style.display = 'block';
         paraError.style.opacity = '1';
-        paraError.innerHTML = 'Connection fail';
+        paraError.innerHTML = 'Connection failed';
       }
 
       if (signUpEmail === '' && signUpPassword === '' && confirmPasword === '') {
-        paraError.innerHTML = 'Please, fill out all fields';
+        paraError.innerHTML = 'Please, fill all the fields';
       } else if (boxEmail.value === '') {
-        paraError.innerHTML = 'Please write an e-mail address';
+        paraError.innerHTML = 'Please write an e-mail';
       } else if (boxPassword.value === '') {
         paraError.innerHTML = 'Please write a password';
       } else if (boxConfirmPassword.value === '') {
