@@ -1,5 +1,5 @@
 import {
-  auth, publish, onGetPost, deletePost,
+  auth, publish, onGetPost, deletePost, like
 } from '../lib/firebase.js';
 import { signout } from './signOut.js';
 
@@ -69,7 +69,7 @@ export const home = () => {
           <p class="post-user">${postData.posts}</p>
           <div class = "like-comment">
           <span class = "icon-container">
-            <i class="fa-regular fa-heart"></i>
+            <i class="fa-regular fa-heart" data-id="${doc.id}"></i>
             <p>Like</p>
           </span>
           <span class= "icon-container">
@@ -85,13 +85,27 @@ export const home = () => {
     // Delete post
     const deteleTrash = comment.querySelectorAll('.fa-trash');
 
-    deteleTrash.forEach((trash) => {
+     deteleTrash.forEach((trash) => {
       trash.addEventListener('click', ({ target: { dataset } }) => {
         if (window.confirm("Do you really want to delete?")) {
           deletePost(dataset.id);
         }
       });
+    }); 
+
+    //Like post
+    const likes = comment.querySelectorAll(".fa-heart");
+
+    likes.forEach((item)=>{
+      item.addEventListener("click", ({ target: { dataset } }) => {
+        if(postData.likes.includes(user.email)){
+          item.classList.remove("fa-regular");
+          item.classList.add("fa-solid");
+          like(dataset.id, user.email);
+        }
+      });
     });
+
   });
 
   writeComment.addEventListener('input', (event) => {

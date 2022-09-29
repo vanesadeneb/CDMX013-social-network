@@ -113,7 +113,7 @@ div.like-comment{
     margin-top: 7px;
 }
 
- i.fa-regular {
+ i.fa-regular, i.fa-solid {
 /*     width: 25px;
     height: 27.71px;
     margin-left: 50px; */
@@ -134,7 +134,8 @@ img.comment-img {
     align-items: center;
 }
 
-.fa-solid{
+.fa-trash, .fa-pencil{
     margin-right: 5px;
     color: #544D4D;
 }
+
