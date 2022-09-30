@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js';
 import {
-  getFirestore, collection, addDoc, getDocs, onSnapshot, serverTimestamp, query, orderBy, doc, deleteDoc,
+  getFirestore, collection, addDoc, getDoc, onSnapshot, serverTimestamp, query, orderBy, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove
 } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js';
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 
@@ -24,10 +24,12 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 // a new variable is created to store the post data collection
-const postsRef = collection(db, 'posts');
+export const postsRef = collection(db, 'posts');
+
+export const likes = [];
 
 export const publish = (posts, user) => addDoc(postsRef, {
-  posts, user, timeOfPublication: serverTimestamp(),
+  likes, posts, user, timeOfPublication: serverTimestamp(),
 });
 
 // Adding query to order posts by time
@@ -37,3 +39,15 @@ export const onGetPost = (callback) => onSnapshot(q, callback);
 
 // Con doc se elimina un solo dato. Recibe dos parámetros: la conexion a la base de datos y el ID.
 export const deletePost = (id) => deleteDoc(doc(db, 'posts', id));
+
+export const getSomething = id => getDoc(doc(db, 'posts', id))
+//Like post
+export const like = async (id, email) => 
+await updateDoc(doc(db, 'posts', id), {
+  likes: arrayUnion(email)
+});
+
+export const dislike = async (id, email) => await updateDoc(doc(db, 'posts', id), {
+  likes: arrayRemove(email),
+});
+
