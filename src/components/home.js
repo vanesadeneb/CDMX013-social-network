@@ -1,4 +1,12 @@
-import { auth, publish, onGetPost, deletePost } from "../lib/firebase.js";
+import {
+  auth,
+  publish,
+  onGetPost,
+  deletePost,
+  like,
+  dislike,
+  getSomething,
+} from "../lib/firebase.js";
 import { signout } from "./signOut.js";
 
 export const home = () => {
@@ -48,6 +56,7 @@ export const home = () => {
     nameUser.textContent = `Welcome ${user.email} !`;
     let html = "";
     let htmlDelete = "";
+    let htmlLike = "";
     querySnapshot.forEach((doc) => {
       const postData = doc.data();
       if (user.email === postData.user) {
@@ -57,25 +66,36 @@ export const home = () => {
       } else {
         htmlDelete = "";
       }
+
+      if (doc.data().likes.includes(user.email)) {
+        console.log("Este email ya está brou" + user.email);
+        htmlLike = `
+        <i class="fa-solid fa-heart" data-id="${doc.id}"></i>
+        `;
+      } else {
+        htmlLike = `
+        <i class="fa-regular fa-heart" data-id="${doc.id}"></i>
+        `;
+      }
       html += `
-      <article class="post-content">
-      <div class= "container-header-post">
-        <img id= "profile-home" src="../imgs/profile.png" alt="Profile Image">
-        <h2 id ="header-post">${postData.user}</h2>
-        <span id="delete-edit"> ${htmlDelete} </span>
-      </div>
-      <p class="post-user">${postData.posts}</p>
-      <div class = "like-comment">
-      <span class = "icon-container">
-        <i class="fa-regular fa-heart"></i>
-        <p>Like</p>
-      </span>
-      <span class= "icon-container">
-        <img class ="comment-img" src="../imgs/comment.png" alt="Profile Image">
-        <p>Comment</p>
-      </span>
-      </div>
-      </article>
+          <article class="post-content">
+          <div class= "container-header-post">
+            <img id= "profile-home" src="../imgs/profile.png" alt="Profile Image">
+            <h2 id ="header-post">${postData.user}</h2>
+            <span id="delete-edit"> ${htmlDelete} </span>
+          </div>
+          <p class="post-user">${postData.posts}</p>
+          <div class = "like-comment">
+          <span class = "icon-container">
+            ${htmlLike}
+            <p>${doc.data().likes.length} Like</p>
+          </span>
+          <span class= "icon-container">
+            <img class ="comment-img" src="../imgs/comment.png" alt="Profile Image">
+            <p>Comment</p>
+          </span>
+          </div>
+          </article>
           `;
     });
     comment.innerHTML = html;
@@ -88,6 +108,26 @@ export const home = () => {
         if (window.confirm("Do you really want to delete?")) {
           deletePost(dataset.id);
         }
+      });
+    });
+
+    //Like post
+    const likesIcons = comment.querySelectorAll(".fa-heart");
+
+    likesIcons.forEach((item) => {
+      item.addEventListener("click", async ({ target: { dataset } }) => {
+        console.log(dataset.id);
+        const doc = await getSomething(dataset.id);
+        if (doc.data().likes.includes(user.email)) {
+          dislike(dataset.id, user.email);
+        } else {
+          like(dataset.id, user.email);
+        }
+
+        /*         if(postData.likes.includes(user.email)){
+                  item.classList.remove("fa-regular");
+                  item.classList.add("fa-solid");
+                } */
       });
     });
   });
