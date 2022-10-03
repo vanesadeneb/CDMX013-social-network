@@ -17,10 +17,13 @@ export const home = () => {
   const sectionContainer = document.createElement("section");
   const postForm = document.createElement("form");
   const nameUser = document.createElement("h1");
+  const commentContainer = document.createElement("div");
   const writeComment = document.createElement("textarea");
+  const charCounter = document.createElement('p');
   const errorCharacters = document.createElement("p");
   const shareButton = document.createElement("button");
   const comment = document.createElement("section");
+
 
   divContainer.setAttribute("id", "body-home");
   header.setAttribute("id", "header");
@@ -31,18 +34,21 @@ export const home = () => {
   sectionContainer.setAttribute("class", "section-home");
   postForm.setAttribute("class", "section-home");
   nameUser.setAttribute("id", "name-user");
+  commentContainer.setAttribute("id", "comment-container");
   writeComment.setAttribute("id", "post-container");
   writeComment.setAttribute(
     "placeholder",
     "Share something less than 300 characters with the community ..."
   );
   writeComment.setAttribute("maxlength", 299);
+  charCounter.setAttribute('id', 'counter');
   shareButton.textContent = "Share";
   shareButton.setAttribute("id", "share");
   shareButton.disabled = true;
 
   header.append(logoHome, logout);
-  postForm.append(nameUser, writeComment, errorCharacters, shareButton);
+  commentContainer.appendChild(writeComment);
+  postForm.append(nameUser, commentContainer, errorCharacters, shareButton);
   sectionContainer.append(postForm, comment);
 
   logout.addEventListener("click", () => {
@@ -77,6 +83,10 @@ export const home = () => {
         <i class="fa-regular fa-heart" data-id="${doc.id}"></i>
         `;
       }
+      let numberOflikes = "";
+      if(doc.data().likes.length > 0){
+        numberOflikes = `<span>${doc.data().likes.length}</span>`;
+      }
       html += `
           <article class="post-content">
           <div class= "container-header-post">
@@ -88,11 +98,7 @@ export const home = () => {
           <div class = "like-comment">
           <span class = "icon-container">
             ${htmlLike}
-            <p>${doc.data().likes.length} Like</p>
-          </span>
-          <span class= "icon-container">
-            <img class ="comment-img" src="../imgs/comment.png" alt="Profile Image">
-            <p>Comment</p>
+            <p>${numberOflikes} Like</p>
           </span>
           </div>
           </article>
@@ -123,11 +129,6 @@ export const home = () => {
         } else {
           like(dataset.id, user.email);
         }
-
-        /*         if(postData.likes.includes(user.email)){
-                  item.classList.remove("fa-regular");
-                  item.classList.add("fa-solid");
-                } */
       });
     });
   });
@@ -135,6 +136,12 @@ export const home = () => {
   writeComment.addEventListener("input", (event) => {
     const { value } = event.target;
     // console.log(value);
+    if(value.length > 0){
+      charCounter.textContent = value.length + "/300";
+      commentContainer.appendChild(charCounter);
+    }else{
+      charCounter.textContent = "";
+    }
     if (value !== "") {
       shareButton.disabled = false;
     } else {
