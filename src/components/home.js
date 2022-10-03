@@ -74,7 +74,6 @@ export const home = () => {
       }
 
       if (doc.data().likes.includes(user.email)) {
-        console.log("Este email ya está brou" + user.email);
         htmlLike = `
         <i class="fa-solid fa-heart" data-id="${doc.id}"></i>
         `;
@@ -135,7 +134,6 @@ export const home = () => {
 
   writeComment.addEventListener("input", (event) => {
     const { value } = event.target;
-    // console.log(value);
     if(value.length > 0){
       charCounter.textContent = value.length + "/300";
       commentContainer.appendChild(charCounter);

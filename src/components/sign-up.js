@@ -10,8 +10,6 @@ export const signUp = () => {
   const logo = document.createElement('img');
   const divInputs = document.createElement('div');
   const p = document.createElement('p');
-  const boxName = document.createElement('input');
-  const boxLastName = document.createElement('input');
   const boxEmail = document.createElement('input');
   const boxPassword = document.createElement('input');
   const boxConfirmPassword = document.createElement('input');
@@ -31,12 +29,6 @@ export const signUp = () => {
   divInputs.setAttribute('class', 'containerInputs');
   p.textContent = 'Sing up';
   p.setAttribute('id', 'text');
-  boxName.setAttribute('type', 'text');
-  boxName.setAttribute('class', 'inputs');
-  boxName.placeholder = 'Write your name';
-  boxLastName.setAttribute('type', 'text');
-  boxLastName.setAttribute('class', 'inputs');
-  boxLastName.placeholder = 'Write your last name';
   boxEmail.setAttribute('type', 'email');
   boxEmail.placeholder = 'email@something.com';
   boxEmail.setAttribute('class', 'inputs');
@@ -51,7 +43,7 @@ export const signUp = () => {
   signUpButton.textContent = 'Sign Up';
   signUpButton.setAttribute('class', 'purpleButton');
 
-  divInputs.append(boxName, boxLastName, boxEmail, boxPassword, boxConfirmPassword, paraError, paraCongrats, signUpButton, pMessage);
+  divInputs.append(boxEmail, boxPassword, boxConfirmPassword, paraError, paraCongrats, signUpButton, pMessage);
 
   sectionOr.src = '../imgs/sectionOr.png';
   signUpTwitter.src = '../imgs/Twitter.png';
@@ -65,15 +57,13 @@ export const signUp = () => {
   paraCongrats.setAttribute('id', 'congrats');
 
   const createAccount = async () => {
-    const getName = boxName.value;
-    const getLastName = boxLastName.value;
     const signUpEmail = boxEmail.value;
     const signUpPassword = boxPassword.value;
     const confirmPasword = boxConfirmPassword.value;
 
     try {
       if (signUpPassword !== confirmPasword) throw Error('The password does not match');
-      const userCredencial = await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword, confirmPasword, getName, getLastName);
+      const userCredencial = await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword, confirmPasword);
       const user = userCredencial.user;
       paraError.innerHTML = '';
       function congrats() {
