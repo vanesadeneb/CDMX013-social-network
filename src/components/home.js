@@ -67,8 +67,7 @@ export const home = () => {
       const postData = doc.data();
       if (user.email === postData.user) {
         htmlDelete = `
-          <i class="fa-sharp fa-solid fa-trash" data-id="${doc.id}"></i>
-          <i class="fa-sharp fa-solid fa-pencil"></i>`;
+          <i class="fa-sharp fa-solid fa-trash" data-id="${doc.id}"></i>`;
       } else {
         htmlDelete = '';
       }
