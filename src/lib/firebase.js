@@ -1,8 +1,7 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js';
+/* eslint-disable import/no-unresolved */
 import {
-  getFirestore, collection, addDoc, getDoc, onSnapshot, serverTimestamp, query, orderBy, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove
-} from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js';
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+  initializeApp, getAuth, getFirestore, collection, addDoc, getDoc, onSnapshot, serverTimestamp, query, orderBy, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove,
+} from './imports.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAP7rv-LIMUMVmMreOEmYNlxC9pSjGKf4g',
@@ -40,14 +39,12 @@ export const onGetPost = (callback) => onSnapshot(q, callback);
 // Con doc se elimina un solo dato. Recibe dos parámetros: la conexion a la base de datos y el ID.
 export const deletePost = (id) => deleteDoc(doc(db, 'posts', id));
 
-export const getSomething = id => getDoc(doc(db, 'posts', id))
-//Like post
-export const like = async (id, email) => 
-await updateDoc(doc(db, 'posts', id), {
-  likes: arrayUnion(email)
+export const getSomething = (id) => getDoc(doc(db, 'posts', id));
+// Like post
+export const like = (id, email) => updateDoc(doc(db, 'posts', id), {
+  likes: arrayUnion(email),
 });
 
-export const dislike = async (id, email) => await updateDoc(doc(db, 'posts', id), {
+export const dislike = (id, email) => updateDoc(doc(db, 'posts', id), {
   likes: arrayRemove(email),
 });
-

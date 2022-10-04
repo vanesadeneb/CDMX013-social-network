@@ -1,4 +1,6 @@
-import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-unresolved */
+import { getAuth, createUserWithEmailAndPassword } from '../lib/imports.js';
 import { app } from '../lib/firebase.js';
 import { onNavigate } from '../main.js';
 import { githubLogin } from './github.js';
@@ -20,7 +22,7 @@ export const signUp = () => {
   const signUpGitHub = document.createElement('img');
   const signUpGoogle = document.createElement('img');
   const footer = document.createElement('footer');
-  
+
   const paraError = document.createElement('p');
   const paraCongrats = document.createElement('p');
 
@@ -42,6 +44,7 @@ export const signUp = () => {
   pMessage.setAttribute('id', 'pMessage');
   signUpButton.textContent = 'Sign Up';
   signUpButton.setAttribute('class', 'purpleButton');
+  signUpButton.setAttribute('id', 'sign-up');
 
   divInputs.append(boxEmail, boxPassword, boxConfirmPassword, paraError, paraCongrats, signUpButton, pMessage);
 
@@ -56,6 +59,10 @@ export const signUp = () => {
   paraError.setAttribute('class', 'errorMessage');
   paraCongrats.setAttribute('id', 'congrats');
 
+  function congrats() {
+    onNavigate('/check');
+  }
+
   const createAccount = async () => {
     const signUpEmail = boxEmail.value;
     const signUpPassword = boxPassword.value;
@@ -66,9 +73,6 @@ export const signUp = () => {
       const userCredencial = await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword, confirmPasword);
       const user = userCredencial.user;
       paraError.innerHTML = '';
-      function congrats() {
-        onNavigate('/check');
-      }
       setTimeout(congrats, 1000);
     } catch (error) {
       paraError.innerHTML = error;
