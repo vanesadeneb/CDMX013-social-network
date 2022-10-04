@@ -153,6 +153,8 @@ export const home = () => {
     const userID = userAuth.email;
     publish(postUser.value, userID);
     postForm.reset();
+    charCounter.textContent = '';
+    shareButton.disabled = true;
   });
 
   divContainer.append(header, sectionContainer);
