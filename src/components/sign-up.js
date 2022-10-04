@@ -34,9 +34,11 @@ export const signUp = () => {
   boxEmail.setAttribute('type', 'email');
   boxEmail.placeholder = 'email@something.com';
   boxEmail.setAttribute('class', 'inputs');
+  boxEmail.setAttribute('id', 'email');
   boxPassword.setAttribute('type', 'password');
   boxPassword.placeholder = 'password';
   boxPassword.setAttribute('class', 'inputs');
+  boxPassword.setAttribute('id', 'password');
   boxConfirmPassword.setAttribute('type', 'password');
   boxConfirmPassword.placeholder = 'Confirm your password';
   boxConfirmPassword.setAttribute('class', 'inputs');
