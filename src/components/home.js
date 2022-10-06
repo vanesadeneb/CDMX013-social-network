@@ -38,9 +38,9 @@ export const home = () => {
   writeComment.setAttribute('id', 'post-container');
   writeComment.setAttribute(
     'placeholder',
-    'Share something less than 300 characters with the community ...',
+    'Share something less than 500 characters with the community ...',
   );
-  writeComment.setAttribute('maxlength', 299);
+  writeComment.setAttribute('maxlength', 500);
   charCounter.setAttribute('id', 'counter');
   shareButton.textContent = 'Share';
   shareButton.setAttribute('id', 'share');
@@ -134,7 +134,7 @@ export const home = () => {
   writeComment.addEventListener('input', (event) => {
     const { value } = event.target;
     if (value.length > 0) {
-      charCounter.textContent = `${value.length}/300`;
+      charCounter.textContent = `${value.length}/500`;
       commentContainer.appendChild(charCounter);
     } else {
       charCounter.textContent = '';

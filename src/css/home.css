@@ -115,6 +115,7 @@ p.post-user{
     padding: 10px;
     border-bottom: 1px solid gray;
     overflow-wrap: break-word ;
+    white-space: pre-wrap;
 }
 
 div.like-comment{
